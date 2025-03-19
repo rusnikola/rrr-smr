@@ -1,0 +1,1672 @@
+
+
+######### Benchmark:   MSQueueHP   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=MSQueueHP   numElements=128   numThreads=1   testLength=20s -----
+Ops/sec = 818862
+memory_usage (Bytes) = 383
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=MSQueueHP   numElements=128   numThreads=1   testLength=20s -----
+Ops/sec = 824910
+memory_usage (Bytes) = 383
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=MSQueueHP   numElements=128   numThreads=1   testLength=20s -----
+Ops/sec = 826081
+memory_usage (Bytes) = 383
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=MSQueueHP   numElements=128   numThreads=1   testLength=20s -----
+Ops/sec = 829698
+memory_usage (Bytes) = 383
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=MSQueueHP   numElements=128   numThreads=1   testLength=20s -----
+Ops/sec = 833205
+memory_usage (Bytes) = 383
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=MSQueueHP   numElements=128   numThreads=1   testLength=20s -----
+Ops/sec = 826081   delta = 1%   min = 818862   max = 833205
+memory_usage (Bytes) = 383   delta = 0%   min = 383   max = 383
+
+
+######### Benchmark:   MSQueueABAHP   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=MSQueueABAHP   numElements=128   numThreads=1   testLength=20s -----
+Ops/sec = 1122077
+memory_usage (Bytes) = 511
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=MSQueueABAHP   numElements=128   numThreads=1   testLength=20s -----
+Ops/sec = 1132887
+memory_usage (Bytes) = 511
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=MSQueueABAHP   numElements=128   numThreads=1   testLength=20s -----
+Ops/sec = 1135451
+memory_usage (Bytes) = 512
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=MSQueueABAHP   numElements=128   numThreads=1   testLength=20s -----
+Ops/sec = 1151093
+memory_usage (Bytes) = 512
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=MSQueueABAHP   numElements=128   numThreads=1   testLength=20s -----
+Ops/sec = 1153016
+memory_usage (Bytes) = 512
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=MSQueueABAHP   numElements=128   numThreads=1   testLength=20s -----
+Ops/sec = 1135451   delta = 2%   min = 1122077   max = 1153016
+memory_usage (Bytes) = 512   delta = 0%   min = 511   max = 512
+
+
+######### Benchmark:   ModQueueABAHP   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=ModQueueABAHP   numElements=128   numThreads=1   testLength=20s -----
+Ops/sec = 1139730
+memory_usage (Bytes) = 383
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=ModQueueABAHP   numElements=128   numThreads=1   testLength=20s -----
+Ops/sec = 1148477
+memory_usage (Bytes) = 383
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=ModQueueABAHP   numElements=128   numThreads=1   testLength=20s -----
+Ops/sec = 1155729
+memory_usage (Bytes) = 383
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=ModQueueABAHP   numElements=128   numThreads=1   testLength=20s -----
+Ops/sec = 1165671
+memory_usage (Bytes) = 384
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=ModQueueABAHP   numElements=128   numThreads=1   testLength=20s -----
+Ops/sec = 1171563
+memory_usage (Bytes) = 384
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=ModQueueABAHP   numElements=128   numThreads=1   testLength=20s -----
+Ops/sec = 1155729   delta = 2%   min = 1139730   max = 1171563
+memory_usage (Bytes) = 383   delta = 0%   min = 383   max = 384
+
+
+######### Benchmark:   MSQueueEBR   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=MSQueueEBR   numElements=128   numThreads=1   testLength=20s -----
+Ops/sec = 862473
+memory_usage (Bytes) = 467
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=MSQueueEBR   numElements=128   numThreads=1   testLength=20s -----
+Ops/sec = 867599
+memory_usage (Bytes) = 467
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=MSQueueEBR   numElements=128   numThreads=1   testLength=20s -----
+Ops/sec = 878862
+memory_usage (Bytes) = 467
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=MSQueueEBR   numElements=128   numThreads=1   testLength=20s -----
+Ops/sec = 878945
+memory_usage (Bytes) = 467
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=MSQueueEBR   numElements=128   numThreads=1   testLength=20s -----
+Ops/sec = 880191
+memory_usage (Bytes) = 467
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=MSQueueEBR   numElements=128   numThreads=1   testLength=20s -----
+Ops/sec = 878862   delta = 2%   min = 862473   max = 880191
+memory_usage (Bytes) = 467   delta = 0%   min = 467   max = 467
+
+
+######### Benchmark:   MSQueueABAEBR   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=MSQueueABAEBR   numElements=128   numThreads=1   testLength=20s -----
+Ops/sec = 1233390
+memory_usage (Bytes) = 623
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=MSQueueABAEBR   numElements=128   numThreads=1   testLength=20s -----
+Ops/sec = 1239943
+memory_usage (Bytes) = 624
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=MSQueueABAEBR   numElements=128   numThreads=1   testLength=20s -----
+Ops/sec = 1243486
+memory_usage (Bytes) = 624
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=MSQueueABAEBR   numElements=128   numThreads=1   testLength=20s -----
+Ops/sec = 1245998
+memory_usage (Bytes) = 624
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=MSQueueABAEBR   numElements=128   numThreads=1   testLength=20s -----
+Ops/sec = 1249870
+memory_usage (Bytes) = 624
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=MSQueueABAEBR   numElements=128   numThreads=1   testLength=20s -----
+Ops/sec = 1243486   delta = 1%   min = 1233390   max = 1249870
+memory_usage (Bytes) = 624   delta = 0%   min = 623   max = 624
+
+
+######### Benchmark:   ModQueueABAEBR   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=ModQueueABAEBR   numElements=128   numThreads=1   testLength=20s -----
+Ops/sec = 1273909
+memory_usage (Bytes) = 467
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=ModQueueABAEBR   numElements=128   numThreads=1   testLength=20s -----
+Ops/sec = 1283892
+memory_usage (Bytes) = 467
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=ModQueueABAEBR   numElements=128   numThreads=1   testLength=20s -----
+Ops/sec = 1285181
+memory_usage (Bytes) = 468
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=ModQueueABAEBR   numElements=128   numThreads=1   testLength=20s -----
+Ops/sec = 1287265
+memory_usage (Bytes) = 468
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=ModQueueABAEBR   numElements=128   numThreads=1   testLength=20s -----
+Ops/sec = 1293830
+memory_usage (Bytes) = 468
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=ModQueueABAEBR   numElements=128   numThreads=1   testLength=20s -----
+Ops/sec = 1285181   delta = 1%   min = 1273909   max = 1293830
+memory_usage (Bytes) = 468   delta = 0%   min = 467   max = 468
+
+
+######### Benchmark:   MSQueueHP   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=MSQueueHP   numElements=128   numThreads=16   testLength=20s -----
+Ops/sec = 320316
+memory_usage (Bytes) = 6235
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=MSQueueHP   numElements=128   numThreads=16   testLength=20s -----
+Ops/sec = 321818
+memory_usage (Bytes) = 6236
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=MSQueueHP   numElements=128   numThreads=16   testLength=20s -----
+Ops/sec = 322243
+memory_usage (Bytes) = 6236
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=MSQueueHP   numElements=128   numThreads=16   testLength=20s -----
+Ops/sec = 322897
+memory_usage (Bytes) = 6237
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=MSQueueHP   numElements=128   numThreads=16   testLength=20s -----
+Ops/sec = 322921
+memory_usage (Bytes) = 6237
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=MSQueueHP   numElements=128   numThreads=16   testLength=20s -----
+Ops/sec = 322243   delta = 0%   min = 320316   max = 322921
+memory_usage (Bytes) = 6236   delta = 0%   min = 6235   max = 6237
+
+
+######### Benchmark:   MSQueueABAHP   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=MSQueueABAHP   numElements=128   numThreads=16   testLength=20s -----
+Ops/sec = 575249
+memory_usage (Bytes) = 8263
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=MSQueueABAHP   numElements=128   numThreads=16   testLength=20s -----
+Ops/sec = 576300
+memory_usage (Bytes) = 8264
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=MSQueueABAHP   numElements=128   numThreads=16   testLength=20s -----
+Ops/sec = 590500
+memory_usage (Bytes) = 8264
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=MSQueueABAHP   numElements=128   numThreads=16   testLength=20s -----
+Ops/sec = 592897
+memory_usage (Bytes) = 8265
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=MSQueueABAHP   numElements=128   numThreads=16   testLength=20s -----
+Ops/sec = 605304
+memory_usage (Bytes) = 8265
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=MSQueueABAHP   numElements=128   numThreads=16   testLength=20s -----
+Ops/sec = 590500   delta = 5%   min = 575249   max = 605304
+memory_usage (Bytes) = 8264   delta = 0%   min = 8263   max = 8265
+
+
+######### Benchmark:   ModQueueABAHP   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=ModQueueABAHP   numElements=128   numThreads=16   testLength=20s -----
+Ops/sec = 553369
+memory_usage (Bytes) = 6192
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=ModQueueABAHP   numElements=128   numThreads=16   testLength=20s -----
+Ops/sec = 556423
+memory_usage (Bytes) = 6193
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=ModQueueABAHP   numElements=128   numThreads=16   testLength=20s -----
+Ops/sec = 556894
+memory_usage (Bytes) = 6195
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=ModQueueABAHP   numElements=128   numThreads=16   testLength=20s -----
+Ops/sec = 557074
+memory_usage (Bytes) = 6195
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=ModQueueABAHP   numElements=128   numThreads=16   testLength=20s -----
+Ops/sec = 561967
+memory_usage (Bytes) = 6197
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=ModQueueABAHP   numElements=128   numThreads=16   testLength=20s -----
+Ops/sec = 556894   delta = 1%   min = 553369   max = 561967
+memory_usage (Bytes) = 6195   delta = 0%   min = 6192   max = 6197
+
+
+######### Benchmark:   MSQueueEBR   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=MSQueueEBR   numElements=128   numThreads=16   testLength=20s -----
+Ops/sec = 429083
+memory_usage (Bytes) = 10262
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=MSQueueEBR   numElements=128   numThreads=16   testLength=20s -----
+Ops/sec = 429967
+memory_usage (Bytes) = 10295
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=MSQueueEBR   numElements=128   numThreads=16   testLength=20s -----
+Ops/sec = 430260
+memory_usage (Bytes) = 10338
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=MSQueueEBR   numElements=128   numThreads=16   testLength=20s -----
+Ops/sec = 432139
+memory_usage (Bytes) = 10368
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=MSQueueEBR   numElements=128   numThreads=16   testLength=20s -----
+Ops/sec = 437863
+memory_usage (Bytes) = 10381
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=MSQueueEBR   numElements=128   numThreads=16   testLength=20s -----
+Ops/sec = 430260   delta = 2%   min = 429083   max = 437863
+memory_usage (Bytes) = 10338   delta = 1%   min = 10262   max = 10381
+
+
+######### Benchmark:   MSQueueABAEBR   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=MSQueueABAEBR   numElements=128   numThreads=16   testLength=20s -----
+Ops/sec = 526540
+memory_usage (Bytes) = 14673
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=MSQueueABAEBR   numElements=128   numThreads=16   testLength=20s -----
+Ops/sec = 527300
+memory_usage (Bytes) = 14719
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=MSQueueABAEBR   numElements=128   numThreads=16   testLength=20s -----
+Ops/sec = 532115
+memory_usage (Bytes) = 14724
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=MSQueueABAEBR   numElements=128   numThreads=16   testLength=20s -----
+Ops/sec = 532778
+memory_usage (Bytes) = 14844
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=MSQueueABAEBR   numElements=128   numThreads=16   testLength=20s -----
+Ops/sec = 534917
+memory_usage (Bytes) = 14847
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=MSQueueABAEBR   numElements=128   numThreads=16   testLength=20s -----
+Ops/sec = 532115   delta = 1%   min = 526540   max = 534917
+memory_usage (Bytes) = 14724   delta = 1%   min = 14673   max = 14847
+
+
+######### Benchmark:   ModQueueABAEBR   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=ModQueueABAEBR   numElements=128   numThreads=16   testLength=20s -----
+Ops/sec = 532328
+memory_usage (Bytes) = 10565
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=ModQueueABAEBR   numElements=128   numThreads=16   testLength=20s -----
+Ops/sec = 532702
+memory_usage (Bytes) = 10625
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=ModQueueABAEBR   numElements=128   numThreads=16   testLength=20s -----
+Ops/sec = 532848
+memory_usage (Bytes) = 10682
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=ModQueueABAEBR   numElements=128   numThreads=16   testLength=20s -----
+Ops/sec = 533930
+memory_usage (Bytes) = 10694
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=ModQueueABAEBR   numElements=128   numThreads=16   testLength=20s -----
+Ops/sec = 534474
+memory_usage (Bytes) = 10732
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=ModQueueABAEBR   numElements=128   numThreads=16   testLength=20s -----
+Ops/sec = 532848   delta = 0%   min = 532328   max = 534474
+memory_usage (Bytes) = 10682   delta = 1%   min = 10565   max = 10732
+
+
+######### Benchmark:   MSQueueHP   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=MSQueueHP   numElements=128   numThreads=32   testLength=20s -----
+Ops/sec = 227928
+memory_usage (Bytes) = 12470
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=MSQueueHP   numElements=128   numThreads=32   testLength=20s -----
+Ops/sec = 229285
+memory_usage (Bytes) = 12472
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=MSQueueHP   numElements=128   numThreads=32   testLength=20s -----
+Ops/sec = 229896
+memory_usage (Bytes) = 12472
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=MSQueueHP   numElements=128   numThreads=32   testLength=20s -----
+Ops/sec = 230421
+memory_usage (Bytes) = 12473
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=MSQueueHP   numElements=128   numThreads=32   testLength=20s -----
+Ops/sec = 230581
+memory_usage (Bytes) = 12473
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=MSQueueHP   numElements=128   numThreads=32   testLength=20s -----
+Ops/sec = 229896   delta = 1%   min = 227928   max = 230581
+memory_usage (Bytes) = 12472   delta = 0%   min = 12470   max = 12473
+
+
+######### Benchmark:   MSQueueABAHP   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=MSQueueABAHP   numElements=128   numThreads=32   testLength=20s -----
+Ops/sec = 372905
+memory_usage (Bytes) = 16568
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=MSQueueABAHP   numElements=128   numThreads=32   testLength=20s -----
+Ops/sec = 374677
+memory_usage (Bytes) = 16570
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=MSQueueABAHP   numElements=128   numThreads=32   testLength=20s -----
+Ops/sec = 377148
+memory_usage (Bytes) = 16571
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=MSQueueABAHP   numElements=128   numThreads=32   testLength=20s -----
+Ops/sec = 379580
+memory_usage (Bytes) = 16574
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=MSQueueABAHP   numElements=128   numThreads=32   testLength=20s -----
+Ops/sec = 382513
+memory_usage (Bytes) = 16576
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=MSQueueABAHP   numElements=128   numThreads=32   testLength=20s -----
+Ops/sec = 377148   delta = 2%   min = 372905   max = 382513
+memory_usage (Bytes) = 16571   delta = 0%   min = 16568   max = 16576
+
+
+######### Benchmark:   ModQueueABAHP   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=ModQueueABAHP   numElements=128   numThreads=32   testLength=20s -----
+Ops/sec = 365739
+memory_usage (Bytes) = 12424
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=ModQueueABAHP   numElements=128   numThreads=32   testLength=20s -----
+Ops/sec = 367900
+memory_usage (Bytes) = 12430
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=ModQueueABAHP   numElements=128   numThreads=32   testLength=20s -----
+Ops/sec = 369820
+memory_usage (Bytes) = 12434
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=ModQueueABAHP   numElements=128   numThreads=32   testLength=20s -----
+Ops/sec = 370756
+memory_usage (Bytes) = 12435
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=ModQueueABAHP   numElements=128   numThreads=32   testLength=20s -----
+Ops/sec = 370876
+memory_usage (Bytes) = 12435
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=ModQueueABAHP   numElements=128   numThreads=32   testLength=20s -----
+Ops/sec = 369820   delta = 1%   min = 365739   max = 370876
+memory_usage (Bytes) = 12434   delta = 0%   min = 12424   max = 12435
+
+
+######### Benchmark:   MSQueueEBR   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=MSQueueEBR   numElements=128   numThreads=32   testLength=20s -----
+Ops/sec = 298059
+memory_usage (Bytes) = 22114
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=MSQueueEBR   numElements=128   numThreads=32   testLength=20s -----
+Ops/sec = 300161
+memory_usage (Bytes) = 22318
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=MSQueueEBR   numElements=128   numThreads=32   testLength=20s -----
+Ops/sec = 300399
+memory_usage (Bytes) = 22395
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=MSQueueEBR   numElements=128   numThreads=32   testLength=20s -----
+Ops/sec = 300534
+memory_usage (Bytes) = 22398
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=MSQueueEBR   numElements=128   numThreads=32   testLength=20s -----
+Ops/sec = 303888
+memory_usage (Bytes) = 22496
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=MSQueueEBR   numElements=128   numThreads=32   testLength=20s -----
+Ops/sec = 300399   delta = 1%   min = 298059   max = 303888
+memory_usage (Bytes) = 22395   delta = 1%   min = 22114   max = 22496
+
+
+######### Benchmark:   MSQueueABAEBR   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=MSQueueABAEBR   numElements=128   numThreads=32   testLength=20s -----
+Ops/sec = 346349
+memory_usage (Bytes) = 31432
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=MSQueueABAEBR   numElements=128   numThreads=32   testLength=20s -----
+Ops/sec = 349804
+memory_usage (Bytes) = 31550
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=MSQueueABAEBR   numElements=128   numThreads=32   testLength=20s -----
+Ops/sec = 350244
+memory_usage (Bytes) = 31638
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=MSQueueABAEBR   numElements=128   numThreads=32   testLength=20s -----
+Ops/sec = 350719
+memory_usage (Bytes) = 31690
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=MSQueueABAEBR   numElements=128   numThreads=32   testLength=20s -----
+Ops/sec = 354444
+memory_usage (Bytes) = 31890
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=MSQueueABAEBR   numElements=128   numThreads=32   testLength=20s -----
+Ops/sec = 350244   delta = 2%   min = 346349   max = 354444
+memory_usage (Bytes) = 31638   delta = 1%   min = 31432   max = 31890
+
+
+######### Benchmark:   ModQueueABAEBR   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=ModQueueABAEBR   numElements=128   numThreads=32   testLength=20s -----
+Ops/sec = 353380
+memory_usage (Bytes) = 23102
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=ModQueueABAEBR   numElements=128   numThreads=32   testLength=20s -----
+Ops/sec = 356755
+memory_usage (Bytes) = 23404
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=ModQueueABAEBR   numElements=128   numThreads=32   testLength=20s -----
+Ops/sec = 357525
+memory_usage (Bytes) = 23516
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=ModQueueABAEBR   numElements=128   numThreads=32   testLength=20s -----
+Ops/sec = 358201
+memory_usage (Bytes) = 23567
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=ModQueueABAEBR   numElements=128   numThreads=32   testLength=20s -----
+Ops/sec = 362321
+memory_usage (Bytes) = 24083
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=ModQueueABAEBR   numElements=128   numThreads=32   testLength=20s -----
+Ops/sec = 357525   delta = 2%   min = 353380   max = 362321
+memory_usage (Bytes) = 23516   delta = 4%   min = 23102   max = 24083
+
+
+######### Benchmark:   MSQueueHP   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=MSQueueHP   numElements=128   numThreads=64   testLength=20s -----
+Ops/sec = 141693
+memory_usage (Bytes) = 24980
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=MSQueueHP   numElements=128   numThreads=64   testLength=20s -----
+Ops/sec = 141860
+memory_usage (Bytes) = 24983
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=MSQueueHP   numElements=128   numThreads=64   testLength=20s -----
+Ops/sec = 142215
+memory_usage (Bytes) = 24984
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=MSQueueHP   numElements=128   numThreads=64   testLength=20s -----
+Ops/sec = 142354
+memory_usage (Bytes) = 24984
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=MSQueueHP   numElements=128   numThreads=64   testLength=20s -----
+Ops/sec = 142371
+memory_usage (Bytes) = 24985
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=MSQueueHP   numElements=128   numThreads=64   testLength=20s -----
+Ops/sec = 142215   delta = 0%   min = 141693   max = 142371
+memory_usage (Bytes) = 24984   delta = 0%   min = 24980   max = 24985
+
+
+######### Benchmark:   MSQueueABAHP   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=MSQueueABAHP   numElements=128   numThreads=64   testLength=20s -----
+Ops/sec = 197303
+memory_usage (Bytes) = 33158
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=MSQueueABAHP   numElements=128   numThreads=64   testLength=20s -----
+Ops/sec = 197542
+memory_usage (Bytes) = 33170
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=MSQueueABAHP   numElements=128   numThreads=64   testLength=20s -----
+Ops/sec = 203741
+memory_usage (Bytes) = 33179
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=MSQueueABAHP   numElements=128   numThreads=64   testLength=20s -----
+Ops/sec = 203835
+memory_usage (Bytes) = 33181
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=MSQueueABAHP   numElements=128   numThreads=64   testLength=20s -----
+Ops/sec = 204049
+memory_usage (Bytes) = 33191
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=MSQueueABAHP   numElements=128   numThreads=64   testLength=20s -----
+Ops/sec = 203741   delta = 3%   min = 197303   max = 204049
+memory_usage (Bytes) = 33179   delta = 0%   min = 33158   max = 33191
+
+
+######### Benchmark:   ModQueueABAHP   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=ModQueueABAHP   numElements=128   numThreads=64   testLength=20s -----
+Ops/sec = 191561
+memory_usage (Bytes) = 24890
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=ModQueueABAHP   numElements=128   numThreads=64   testLength=20s -----
+Ops/sec = 197547
+memory_usage (Bytes) = 24899
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=ModQueueABAHP   numElements=128   numThreads=64   testLength=20s -----
+Ops/sec = 197616
+memory_usage (Bytes) = 24899
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=ModQueueABAHP   numElements=128   numThreads=64   testLength=20s -----
+Ops/sec = 197846
+memory_usage (Bytes) = 24906
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=ModQueueABAHP   numElements=128   numThreads=64   testLength=20s -----
+Ops/sec = 197867
+memory_usage (Bytes) = 24914
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=ModQueueABAHP   numElements=128   numThreads=64   testLength=20s -----
+Ops/sec = 197616   delta = 3%   min = 191561   max = 197867
+memory_usage (Bytes) = 24899   delta = 0%   min = 24890   max = 24914
+
+
+######### Benchmark:   MSQueueEBR   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=MSQueueEBR   numElements=128   numThreads=64   testLength=20s -----
+Ops/sec = 178323
+memory_usage (Bytes) = 52892
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=MSQueueEBR   numElements=128   numThreads=64   testLength=20s -----
+Ops/sec = 178512
+memory_usage (Bytes) = 53108
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=MSQueueEBR   numElements=128   numThreads=64   testLength=20s -----
+Ops/sec = 178620
+memory_usage (Bytes) = 53751
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=MSQueueEBR   numElements=128   numThreads=64   testLength=20s -----
+Ops/sec = 178658
+memory_usage (Bytes) = 53815
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=MSQueueEBR   numElements=128   numThreads=64   testLength=20s -----
+Ops/sec = 178809
+memory_usage (Bytes) = 55440
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=MSQueueEBR   numElements=128   numThreads=64   testLength=20s -----
+Ops/sec = 178620   delta = 0%   min = 178323   max = 178809
+memory_usage (Bytes) = 53751   delta = 4%   min = 52892   max = 55440
+
+
+######### Benchmark:   MSQueueABAEBR   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=MSQueueABAEBR   numElements=128   numThreads=64   testLength=20s -----
+Ops/sec = 201485
+memory_usage (Bytes) = 81241
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=MSQueueABAEBR   numElements=128   numThreads=64   testLength=20s -----
+Ops/sec = 203000
+memory_usage (Bytes) = 82198
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=MSQueueABAEBR   numElements=128   numThreads=64   testLength=20s -----
+Ops/sec = 203369
+memory_usage (Bytes) = 82872
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=MSQueueABAEBR   numElements=128   numThreads=64   testLength=20s -----
+Ops/sec = 203566
+memory_usage (Bytes) = 85041
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=MSQueueABAEBR   numElements=128   numThreads=64   testLength=20s -----
+Ops/sec = 208085
+memory_usage (Bytes) = 88899
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=MSQueueABAEBR   numElements=128   numThreads=64   testLength=20s -----
+Ops/sec = 203369   delta = 3%   min = 201485   max = 208085
+memory_usage (Bytes) = 82872   delta = 9%   min = 81241   max = 88899
+
+
+######### Benchmark:   ModQueueABAEBR   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=ModQueueABAEBR   numElements=128   numThreads=64   testLength=20s -----
+Ops/sec = 193456
+memory_usage (Bytes) = 62316
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=ModQueueABAEBR   numElements=128   numThreads=64   testLength=20s -----
+Ops/sec = 194961
+memory_usage (Bytes) = 62319
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=ModQueueABAEBR   numElements=128   numThreads=64   testLength=20s -----
+Ops/sec = 196824
+memory_usage (Bytes) = 62561
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=ModQueueABAEBR   numElements=128   numThreads=64   testLength=20s -----
+Ops/sec = 197768
+memory_usage (Bytes) = 62693
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=ModQueueABAEBR   numElements=128   numThreads=64   testLength=20s -----
+Ops/sec = 198409
+memory_usage (Bytes) = 63313
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=ModQueueABAEBR   numElements=128   numThreads=64   testLength=20s -----
+Ops/sec = 196824   delta = 2%   min = 193456   max = 198409
+memory_usage (Bytes) = 62561   delta = 1%   min = 62316   max = 63313
+
+
+######### Benchmark:   MSQueueHP   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=MSQueueHP   numElements=128   numThreads=96   testLength=20s -----
+Ops/sec = 138926
+memory_usage (Bytes) = 37516
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=MSQueueHP   numElements=128   numThreads=96   testLength=20s -----
+Ops/sec = 139276
+memory_usage (Bytes) = 37517
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=MSQueueHP   numElements=128   numThreads=96   testLength=20s -----
+Ops/sec = 139414
+memory_usage (Bytes) = 37520
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=MSQueueHP   numElements=128   numThreads=96   testLength=20s -----
+Ops/sec = 139667
+memory_usage (Bytes) = 37521
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=MSQueueHP   numElements=128   numThreads=96   testLength=20s -----
+Ops/sec = 140154
+memory_usage (Bytes) = 37521
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=MSQueueHP   numElements=128   numThreads=96   testLength=20s -----
+Ops/sec = 139414   delta = 0%   min = 138926   max = 140154
+memory_usage (Bytes) = 37520   delta = 0%   min = 37516   max = 37521
+
+
+######### Benchmark:   MSQueueABAHP   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=MSQueueABAHP   numElements=128   numThreads=96   testLength=20s -----
+Ops/sec = 195191
+memory_usage (Bytes) = 49824
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=MSQueueABAHP   numElements=128   numThreads=96   testLength=20s -----
+Ops/sec = 196163
+memory_usage (Bytes) = 49836
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=MSQueueABAHP   numElements=128   numThreads=96   testLength=20s -----
+Ops/sec = 201092
+memory_usage (Bytes) = 49837
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=MSQueueABAHP   numElements=128   numThreads=96   testLength=20s -----
+Ops/sec = 201162
+memory_usage (Bytes) = 49852
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=MSQueueABAHP   numElements=128   numThreads=96   testLength=20s -----
+Ops/sec = 201528
+memory_usage (Bytes) = 49893
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=MSQueueABAHP   numElements=128   numThreads=96   testLength=20s -----
+Ops/sec = 201092   delta = 3%   min = 195191   max = 201528
+memory_usage (Bytes) = 49837   delta = 0%   min = 49824   max = 49893
+
+
+######### Benchmark:   ModQueueABAHP   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=ModQueueABAHP   numElements=128   numThreads=96   testLength=20s -----
+Ops/sec = 196062
+memory_usage (Bytes) = 37368
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=ModQueueABAHP   numElements=128   numThreads=96   testLength=20s -----
+Ops/sec = 196995
+memory_usage (Bytes) = 37390
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=ModQueueABAHP   numElements=128   numThreads=96   testLength=20s -----
+Ops/sec = 199047
+memory_usage (Bytes) = 37402
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=ModQueueABAHP   numElements=128   numThreads=96   testLength=20s -----
+Ops/sec = 199371
+memory_usage (Bytes) = 37415
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=ModQueueABAHP   numElements=128   numThreads=96   testLength=20s -----
+Ops/sec = 199439
+memory_usage (Bytes) = 37415
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=ModQueueABAHP   numElements=128   numThreads=96   testLength=20s -----
+Ops/sec = 199047   delta = 1%   min = 196062   max = 199439
+memory_usage (Bytes) = 37402   delta = 0%   min = 37368   max = 37415
+
+
+######### Benchmark:   MSQueueEBR   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=MSQueueEBR   numElements=128   numThreads=96   testLength=20s -----
+Ops/sec = 172374
+memory_usage (Bytes) = 95148
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=MSQueueEBR   numElements=128   numThreads=96   testLength=20s -----
+Ops/sec = 172441
+memory_usage (Bytes) = 96295
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=MSQueueEBR   numElements=128   numThreads=96   testLength=20s -----
+Ops/sec = 172752
+memory_usage (Bytes) = 97695
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=MSQueueEBR   numElements=128   numThreads=96   testLength=20s -----
+Ops/sec = 172794
+memory_usage (Bytes) = 98636
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=MSQueueEBR   numElements=128   numThreads=96   testLength=20s -----
+Ops/sec = 173433
+memory_usage (Bytes) = 100597
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=MSQueueEBR   numElements=128   numThreads=96   testLength=20s -----
+Ops/sec = 172752   delta = 0%   min = 172374   max = 173433
+memory_usage (Bytes) = 97695   delta = 5%   min = 95148   max = 100597
+
+
+######### Benchmark:   MSQueueABAEBR   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=MSQueueABAEBR   numElements=128   numThreads=96   testLength=20s -----
+Ops/sec = 191924
+memory_usage (Bytes) = 139121
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=MSQueueABAEBR   numElements=128   numThreads=96   testLength=20s -----
+Ops/sec = 195684
+memory_usage (Bytes) = 140062
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=MSQueueABAEBR   numElements=128   numThreads=96   testLength=20s -----
+Ops/sec = 195702
+memory_usage (Bytes) = 145012
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=MSQueueABAEBR   numElements=128   numThreads=96   testLength=20s -----
+Ops/sec = 196046
+memory_usage (Bytes) = 147815
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=MSQueueABAEBR   numElements=128   numThreads=96   testLength=20s -----
+Ops/sec = 196427
+memory_usage (Bytes) = 150250
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=MSQueueABAEBR   numElements=128   numThreads=96   testLength=20s -----
+Ops/sec = 195702   delta = 2%   min = 191924   max = 196427
+memory_usage (Bytes) = 145012   delta = 7%   min = 139121   max = 150250
+
+
+######### Benchmark:   ModQueueABAEBR   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=ModQueueABAEBR   numElements=128   numThreads=96   testLength=20s -----
+Ops/sec = 188011
+memory_usage (Bytes) = 104790
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=ModQueueABAEBR   numElements=128   numThreads=96   testLength=20s -----
+Ops/sec = 188274
+memory_usage (Bytes) = 107909
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=ModQueueABAEBR   numElements=128   numThreads=96   testLength=20s -----
+Ops/sec = 188371
+memory_usage (Bytes) = 109254
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=ModQueueABAEBR   numElements=128   numThreads=96   testLength=20s -----
+Ops/sec = 188451
+memory_usage (Bytes) = 111553
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=ModQueueABAEBR   numElements=128   numThreads=96   testLength=20s -----
+Ops/sec = 192202
+memory_usage (Bytes) = 112957
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=ModQueueABAEBR   numElements=128   numThreads=96   testLength=20s -----
+Ops/sec = 188371   delta = 2%   min = 188011   max = 192202
+memory_usage (Bytes) = 109254   delta = 7%   min = 104790   max = 112957
+
+
+######### Benchmark:   MSQueueHP   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=MSQueueHP   numElements=128   numThreads=128   testLength=20s -----
+Ops/sec = 133931
+memory_usage (Bytes) = 50073
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=MSQueueHP   numElements=128   numThreads=128   testLength=20s -----
+Ops/sec = 133959
+memory_usage (Bytes) = 50076
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=MSQueueHP   numElements=128   numThreads=128   testLength=20s -----
+Ops/sec = 133963
+memory_usage (Bytes) = 50079
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=MSQueueHP   numElements=128   numThreads=128   testLength=20s -----
+Ops/sec = 134049
+memory_usage (Bytes) = 50080
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=MSQueueHP   numElements=128   numThreads=128   testLength=20s -----
+Ops/sec = 134545
+memory_usage (Bytes) = 50087
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=MSQueueHP   numElements=128   numThreads=128   testLength=20s -----
+Ops/sec = 133963   delta = 0%   min = 133931   max = 134545
+memory_usage (Bytes) = 50079   delta = 0%   min = 50073   max = 50087
+
+
+######### Benchmark:   MSQueueABAHP   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=MSQueueABAHP   numElements=128   numThreads=128   testLength=20s -----
+Ops/sec = 190351
+memory_usage (Bytes) = 66446
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=MSQueueABAHP   numElements=128   numThreads=128   testLength=20s -----
+Ops/sec = 190357
+memory_usage (Bytes) = 66457
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=MSQueueABAHP   numElements=128   numThreads=128   testLength=20s -----
+Ops/sec = 190517
+memory_usage (Bytes) = 66459
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=MSQueueABAHP   numElements=128   numThreads=128   testLength=20s -----
+Ops/sec = 190525
+memory_usage (Bytes) = 66490
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=MSQueueABAHP   numElements=128   numThreads=128   testLength=20s -----
+Ops/sec = 192347
+memory_usage (Bytes) = 66495
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=MSQueueABAHP   numElements=128   numThreads=128   testLength=20s -----
+Ops/sec = 190517   delta = 1%   min = 190351   max = 192347
+memory_usage (Bytes) = 66459   delta = 0%   min = 66446   max = 66495
+
+
+######### Benchmark:   ModQueueABAHP   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=ModQueueABAHP   numElements=128   numThreads=128   testLength=20s -----
+Ops/sec = 189881
+memory_usage (Bytes) = 49877
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=ModQueueABAHP   numElements=128   numThreads=128   testLength=20s -----
+Ops/sec = 189927
+memory_usage (Bytes) = 49879
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=ModQueueABAHP   numElements=128   numThreads=128   testLength=20s -----
+Ops/sec = 191062
+memory_usage (Bytes) = 49905
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=ModQueueABAHP   numElements=128   numThreads=128   testLength=20s -----
+Ops/sec = 191079
+memory_usage (Bytes) = 49909
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=ModQueueABAHP   numElements=128   numThreads=128   testLength=20s -----
+Ops/sec = 191279
+memory_usage (Bytes) = 49912
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=ModQueueABAHP   numElements=128   numThreads=128   testLength=20s -----
+Ops/sec = 191062   delta = 0%   min = 189881   max = 191279
+memory_usage (Bytes) = 49905   delta = 0%   min = 49877   max = 49912
+
+
+######### Benchmark:   MSQueueEBR   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=MSQueueEBR   numElements=128   numThreads=128   testLength=20s -----
+Ops/sec = 163043
+memory_usage (Bytes) = 275605
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=MSQueueEBR   numElements=128   numThreads=128   testLength=20s -----
+Ops/sec = 163069
+memory_usage (Bytes) = 295190
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=MSQueueEBR   numElements=128   numThreads=128   testLength=20s -----
+Ops/sec = 163115
+memory_usage (Bytes) = 299603
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=MSQueueEBR   numElements=128   numThreads=128   testLength=20s -----
+Ops/sec = 163195
+memory_usage (Bytes) = 315954
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=MSQueueEBR   numElements=128   numThreads=128   testLength=20s -----
+Ops/sec = 163389
+memory_usage (Bytes) = 335461
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=MSQueueEBR   numElements=128   numThreads=128   testLength=20s -----
+Ops/sec = 163115   delta = 0%   min = 163043   max = 163389
+memory_usage (Bytes) = 299603   delta = 19%   min = 275605   max = 335461
+
+
+######### Benchmark:   MSQueueABAEBR   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=MSQueueABAEBR   numElements=128   numThreads=128   testLength=20s -----
+Ops/sec = 183389
+memory_usage (Bytes) = 444504
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=MSQueueABAEBR   numElements=128   numThreads=128   testLength=20s -----
+Ops/sec = 183431
+memory_usage (Bytes) = 463135
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=MSQueueABAEBR   numElements=128   numThreads=128   testLength=20s -----
+Ops/sec = 183574
+memory_usage (Bytes) = 475300
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=MSQueueABAEBR   numElements=128   numThreads=128   testLength=20s -----
+Ops/sec = 184071
+memory_usage (Bytes) = 478666
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=MSQueueABAEBR   numElements=128   numThreads=128   testLength=20s -----
+Ops/sec = 185262
+memory_usage (Bytes) = 481646
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=MSQueueABAEBR   numElements=128   numThreads=128   testLength=20s -----
+Ops/sec = 183574   delta = 1%   min = 183389   max = 185262
+memory_usage (Bytes) = 475300   delta = 7%   min = 444504   max = 481646
+
+
+######### Benchmark:   ModQueueABAEBR   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=ModQueueABAEBR   numElements=128   numThreads=128   testLength=20s -----
+Ops/sec = 182300
+memory_usage (Bytes) = 361729
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=ModQueueABAEBR   numElements=128   numThreads=128   testLength=20s -----
+Ops/sec = 182413
+memory_usage (Bytes) = 368578
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=ModQueueABAEBR   numElements=128   numThreads=128   testLength=20s -----
+Ops/sec = 182676
+memory_usage (Bytes) = 369261
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=ModQueueABAEBR   numElements=128   numThreads=128   testLength=20s -----
+Ops/sec = 183676
+memory_usage (Bytes) = 372881
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=ModQueueABAEBR   numElements=128   numThreads=128   testLength=20s -----
+Ops/sec = 183707
+memory_usage (Bytes) = 392980
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=ModQueueABAEBR   numElements=128   numThreads=128   testLength=20s -----
+Ops/sec = 182676   delta = 0%   min = 182300   max = 183707
+memory_usage (Bytes) = 369261   delta = 8%   min = 361729   max = 392980
+
+
+FINAL RESULTS (FOR CHARTS):
+
+
+Results in ops per second for numRuns=5,  length=20s 
+
+Number of elements: 128
+
+Threads, MSQueueHP, MSQueueABAHP, ModQueueHP, MSQueueEBR, MSQueueABAEBR, ModQueueEBR, MSQueueHP_Memory_Usage, MSQueueABAHP_Memory_Usage, ModQueueHP_Memory_Usage, MSQueueEBR_Memory_Usage, MSQueueABAEBR_Memory_Usage, ModQueueEBR_Memory_Usage
+1, 826081, 1135451, 1155729, 878862, 1243486, 1285181, 383, 512, 383, 467, 624, 468, 
+16, 322243, 590500, 556894, 430260, 532115, 532848, 6236, 8264, 6195, 10338, 14724, 10682, 
+32, 229896, 377148, 369820, 300399, 350244, 357525, 12472, 16571, 12434, 22395, 31638, 23516, 
+64, 142215, 203741, 197616, 178620, 203369, 196824, 24984, 33179, 24899, 53751, 82872, 62561, 
+96, 139414, 201092, 199047, 172752, 195702, 188371, 37520, 49837, 37402, 97695, 145012, 109254, 
+128, 133963, 190517, 191062, 163115, 183574, 182676, 50079, 66459, 49905, 299603, 475300, 369261, 
