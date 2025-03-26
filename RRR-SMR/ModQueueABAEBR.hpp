@@ -43,19 +43,14 @@ private:
     struct Node {
         std::atomic<Node *> next;
         size_t value;
-        size_t* myArray;
-        
+        size_t myArray[0];
+
         Node(size_t payloadSize) {
             size_t arraySize = payloadSize / sizeof(size_t);
-            myArray = new size_t[arraySize];
 
             for (size_t i = 0; i < arraySize; i++) {
                 myArray[i] = i;
             }
-        }
-        
-         ~Node() {
-            delete[] myArray;
         }
     };
 
@@ -69,13 +64,14 @@ private:
     
     const int maxThreads;
     const size_t payloadSize;
-    EBR<Node> ebr {maxThreads};
+    EBR<Node> ebr {maxThreads, payloadSize >= 1024, payloadSize >= 1024};
 
 public:
 
     ModQueueABAEBR (const int maxThreads, const size_t payloadBytes) : maxThreads{maxThreads}, payloadSize{payloadBytes}{
         for (size_t i = 0; i < N; i++) {
-            Node* node = new Node(payloadSize);
+            void* buffer = malloc(sizeof(Node) + payloadSize);
+            Node* node = new(buffer) Node(payloadSize);
             node->next.store((Node *) 0x1, std::memory_order_relaxed);
             Q[i].Head.half.tag.store(0, std::memory_order_relaxed);
             Q[i].Head.half.ptr.store(node, std::memory_order_relaxed);
@@ -170,7 +166,8 @@ public:
     }
 
     void insert(T* key, const int tid, size_t listIndex = 0) {
-        Node* node = new Node(payloadSize);
+        void* buffer = malloc(sizeof(Node) + payloadSize);
+        Node* node = new(buffer) Node(payloadSize);
         node->value = key->getSeq();
         ebr.read_lock(tid);
         do_enqueue(key, tid, listIndex, node);

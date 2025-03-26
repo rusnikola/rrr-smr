@@ -44,20 +44,15 @@ private:
 
     struct Node {
         T* key;
-        T** myArray;
-        std::atomic<Node*> next;        
-        
+        std::atomic<Node*> next;
+        T* myArray[0];
+
         Node(T* key, size_t payloadSize) : key{key}, next{nullptr} {
-              size_t arraySize = payloadSize / sizeof(T*);
-            myArray = new T*[arraySize];
+            size_t arraySize = payloadSize / sizeof(T*);
 
             for (size_t i = 0; i < arraySize; i++) {
                 myArray[i] = key;
             }
-        }
-
-        ~Node() {
-            delete[] myArray;
         }
     };
 
@@ -70,13 +65,14 @@ private:
 
     const int maxThreads;
     const size_t payloadSize;
-    EBR<Node> ebr {maxThreads};
+    EBR<Node> ebr {maxThreads, payloadSize >= 1024, payloadSize >= 1024};
 
 public:
 
     HarrisMichaelLinkedListEBR(const int maxThreads, const size_t payloadBytes) : maxThreads{maxThreads}, payloadSize{payloadBytes} {
-        for (size_t i = 0; i < N; ++i) {
-            head[i].list.store(new Node(nullptr, payloadSize));
+        for (size_t i = 0; i < N; i++) {
+            void* buffer = malloc(sizeof(Node) + payloadSize);
+            head[i].list.store(new(buffer) Node(nullptr, payloadSize));
         }
     }
 
@@ -89,12 +85,12 @@ public:
     {
         Node *curr, *next;
         std::atomic<Node*> *prev;
-        std::vector<Node*> retired;
-        Node* newNode = new Node(key, payloadSize);
+        void* buffer = malloc(sizeof(Node) + payloadSize);
+        Node* newNode = new(buffer) Node(key, payloadSize);
         ebr.read_lock(tid);
         while (true) {
-            if (find(key, &prev, &curr, &next, retired, tid, listIndex)) {
-                delete newNode;
+            if (find(key, &prev, &curr, &next, tid, listIndex)) {
+                free(newNode);
                 ebr.read_unlock(tid);
                 return false;
             }
@@ -111,11 +107,10 @@ public:
     {
         Node *curr, *next;
         std::atomic<Node*> *prev;
-        std::vector<Node*> retired;
         ebr.read_lock(tid);
         ebr.take_snapshot(tid);
         while (true) {
-            if (!find(key, &prev, &curr, &next, retired, tid, listIndex)) {
+            if (!find(key, &prev, &curr, &next, tid, listIndex)) {
                 ebr.read_unlock(tid);
                 return false;
             }
@@ -148,9 +143,8 @@ public:
     {
         Node *curr, *next;
         std::atomic<Node*> *prev;
-        std::vector<Node*> retired;
         ebr.read_lock(tid);
-        bool isContains = find(key, &prev, &curr, &next, retired, tid, listIndex);
+        bool isContains = find(key, &prev, &curr, &next, tid, listIndex);
         ebr.read_unlock(tid);
         return isContains;
     }
@@ -164,7 +158,7 @@ public:
 
 private:
 
-    bool find (T* key, std::atomic<Node*> **par_prev, Node **par_curr, Node **par_next, std::vector<Node*>& retired, const int tid, size_t listIndex = 0)
+    bool find (T* key, std::atomic<Node*> **par_prev, Node **par_curr, Node **par_next, const int tid, size_t listIndex = 0)
     {
         std::atomic<Node*> *prev;
         Node *curr, *next;

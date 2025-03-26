@@ -44,22 +44,17 @@ private:
     struct Node {
         AtomicNode<Node> next;
         T* key;
-        T** myArray;
+        T* myArray[0];
 
         Node(T* key, size_t payloadSize) : key{key} {
             next.half.ptr = nullptr;
             next.half.tag = 0;
-            
+
             size_t arraySize = payloadSize / sizeof(T*);
-            myArray = new T*[arraySize];
 
             for (size_t i = 0; i < arraySize; i++) {
                 myArray[i] = key;
             }
-        }
-        
-        ~Node() {
-            delete[] myArray;
         }
     };
 
@@ -73,18 +68,19 @@ private:
     const int maxThreads;
     const size_t payloadSize;
     
-    HazardPointers<Node> hp {3, maxThreads};
     const int kHp0 = 0;
     const int kHp1 = 1;
     const int kHp2 = 2;
 
+    HazardPointers<Node> hp {3, maxThreads, payloadSize >= 1024};
 
 public:
 
     DWHarrisMichaelLinkedListHP(const int maxThreads, const size_t payloadBytes) : maxThreads{maxThreads}, payloadSize{payloadBytes} {
         for (size_t i = 0; i < N; i++) {
             head[i].list.half.tag.store(0);
-            head[i].list.half.ptr.store(new Node(nullptr,  payloadSize));
+            void* buffer = malloc(sizeof(Node) + payloadSize);
+            head[i].list.half.ptr.store(new(buffer) Node(nullptr, payloadSize));
         }
     }
 
@@ -144,9 +140,10 @@ public:
     }
 
     bool insert(T* key, const int tid, size_t listIndex = 0) {
-        Node* newNode = new Node(key, payloadSize);
+        void* buffer = malloc(sizeof(Node) + payloadSize);
+        Node* newNode = new(buffer) Node(key, payloadSize);
         if (!do_add(key, tid, listIndex, newNode)) {
-            delete newNode;
+            free(newNode);
             hp.clear(tid);
             return false;
         }

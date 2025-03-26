@@ -43,19 +43,14 @@ private:
     struct Node {
         AtomicNode<Node> next;
         size_t value;
-         size_t* myArray;
-        
+        size_t myArray[0];
+
         Node(size_t payloadSize) {
             size_t arraySize = payloadSize / sizeof(size_t);
-            myArray = new size_t[arraySize];
 
             for (size_t i = 0; i < arraySize; i++) {
                 myArray[i] = i;
             }
-        }
-        
-         ~Node() {
-            delete[] myArray;
         }
     };
 
@@ -66,20 +61,22 @@ private:
 
     Queue Q[N];
     alignas(128) char pad[0];
-    
+
     const int maxThreads;
     const size_t payloadSize;
-    
-    HazardPointers<Node> hp {2, maxThreads};
+
     const int kHpTail = 0;
     const int kHpHead = 0;
     const int kHpNext = 1;
+
+    HazardPointers<Node> hp {2, maxThreads, payloadSize >= 1024};
 
 public:
 
     MSQueueABAHP (const int maxThreads, const size_t payloadBytes) : maxThreads{maxThreads}, payloadSize{payloadBytes} {
         for (size_t i = 0; i < N; i++) {
-            Node* node = new Node(payloadSize);
+            void* buffer = malloc(sizeof(Node) + payloadSize);
+            Node* node = new(buffer) Node(payloadSize);
             node->next.half.tag.store(0, std::memory_order_relaxed);
             node->next.half.ptr.store(nullptr, std::memory_order_relaxed);
             Q[i].Head.half.tag.store(0, std::memory_order_relaxed);
@@ -103,7 +100,9 @@ public:
 
         while (true) {
             curr.tag = tail->half.tag.load();
-            curr.ptr = hp.protect(kHpTail, tail->half.ptr.load(), tid);
+            curr.ptr = hp.protectPtr(kHpTail, tail->half.ptr.load(), tid);
+            if (tail->half.tag.load() != curr.tag)
+                continue;
             next.ptr = curr.ptr->next.half.ptr.load();
             next.tag = curr.ptr->next.half.tag.load();
             if (tail->half.tag.load() == curr.tag) {           
@@ -126,7 +125,8 @@ public:
     }
     
     void insert(T* key, const int tid, size_t listIndex = 0) {
-        Node* node = new Node(payloadSize);
+        void* buffer = malloc(sizeof(Node) + payloadSize);
+        Node* node = new(buffer) Node(payloadSize);
         node->value = key->getSeq();
         node->next.half.tag.store(0, std::memory_order_relaxed);
         node->next.half.ptr.store(nullptr, std::memory_order_relaxed);
@@ -141,7 +141,9 @@ public:
         hp.take_snapshot(tid);
         while (true) {
             curr_head.tag = head->half.tag.load();
-            curr_head.ptr = hp.protect(kHpHead, head->half.ptr.load(), tid);
+            curr_head.ptr = hp.protectPtr(kHpHead, head->half.ptr.load(), tid);
+            if (head->half.tag.load() != curr_head.tag)
+                continue;
             curr_tail.tag = tail->half.tag.load();
             curr_tail.ptr = tail->half.ptr.load();
             next.tag = curr_head.ptr->next.half.tag.load();

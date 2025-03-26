@@ -38,13 +38,13 @@ template<typename T>
 class HazardPointers {
 
 private:
-    static const int      HP_MAX_THREADS = 128;
+    static const int      HP_MAX_THREADS = 256;
     static const int      HP_MAX_HPS = 5;   
-    static const int      HP_THRESHOLD_R = 32; 
     static const int      MAX_RETIRED = HP_MAX_THREADS * HP_MAX_HPS;
 
     const int             maxHPs;
     const int             maxThreads;
+    const size_t          HP_THRESHOLD_R;
 
     typedef struct hp_node_s {
         struct hp_node_s* next;
@@ -67,7 +67,7 @@ private:
     retired_node_controller_t *rnc;
 
 public:
-    HazardPointers(int maxHPs = HP_MAX_HPS, int maxThreads = HP_MAX_THREADS) : maxHPs{maxHPs}, maxThreads{maxThreads} {
+    HazardPointers(int _maxHPs, int _maxThreads, bool smallEmptyFreq) : maxHPs{_maxHPs}, maxThreads{_maxThreads}, HP_THRESHOLD_R(smallEmptyFreq ? 4 : 32) {
         rnc = static_cast<retired_node_controller_t*>(aligned_alloc(128, sizeof(retired_node_controller_t) * HP_MAX_THREADS));
         for (int it = 0; it < HP_MAX_THREADS; it++) {
             for (int ihp = 0; ihp < HP_MAX_HPS; ihp++) {
@@ -98,7 +98,7 @@ public:
                 }
                 hp_node_t *next = current_node->next;
                 if (canDelete) {
-                    delete obj;
+                    free(obj);
                     if (current_node->prev) {
                        current_node->prev->next = current_node->next;
                     } else {
@@ -194,7 +194,7 @@ public:
             hp_node_t *next = current_node->next;
             if (canDelete) {
                 rnc[tid].space--;
-                delete obj;
+                free(obj);
                 if (current_node->prev) {
                    current_node->prev->next = current_node->next;
                 } else {

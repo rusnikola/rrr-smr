@@ -44,22 +44,17 @@ private:
     struct Node {
         AtomicNode<Node> next;
         T* key;
-        T** myArray;
+        T* myArray[0];
 
         Node(T* key, size_t payloadSize) : key{key} {
             next.half.ptr = nullptr;
             next.half.tag = 0;
             
             size_t arraySize = payloadSize / sizeof(T*);
-            myArray = new T*[arraySize];
 
             for (size_t i = 0; i < arraySize; i++) {
                 myArray[i] = key;
             }
-        }
-        
-        ~Node() {
-            delete[] myArray;
         }
     };
 
@@ -73,7 +68,7 @@ private:
 
     const int maxThreads;
     const size_t payloadSize;
-    EBR<Node> ebr {maxThreads};
+    EBR<Node> ebr {maxThreads, payloadSize >= 1024, payloadSize >= 1024};
 
 
 public:
@@ -81,7 +76,8 @@ public:
     DWHarrisMichaelLinkedListEBR(const int maxThreads, const size_t payloadBytes) : maxThreads{maxThreads}, payloadSize{payloadBytes} {
         for (size_t i = 0; i < N; i++) {
             head[i].list.half.tag.store(0);
-            head[i].list.half.ptr.store(new Node(nullptr, payloadSize));
+            void* buffer = malloc(sizeof(Node) + payloadSize);
+            head[i].list.half.ptr.store(new(buffer) Node(nullptr, payloadSize));
         }
     }
 
@@ -140,10 +136,11 @@ public:
     }
 
     bool insert(T* key, const int tid, size_t listIndex = 0) {
-        Node* newNode = new Node(key, payloadSize);
+        void* buffer = malloc(sizeof(Node) + payloadSize);
+        Node* newNode = new(buffer) Node(key, payloadSize);
         ebr.read_lock(tid);
         if (!do_add(key, tid, listIndex, newNode)) {
-            delete newNode;
+            free(newNode);
             ebr.read_unlock(tid);
             return false;
         }
@@ -281,15 +278,15 @@ private:
             next.tag = curr.ptr->next.half.tag.load();
             next.ptr = curr.ptr->next.half.ptr.load();
             curr_key = curr.ptr->key;
-            if(prev->half.tag.load() != curr.tag) goto try_again;
-                if (getUnmarked(next.ptr) == next.ptr) {
+            if (prev->half.tag.load() != curr.tag) goto try_again;
+            if (getUnmarked(next.ptr) == next.ptr) {
                 if (curr_key != nullptr && !(*curr_key < *key)) {
-                *par_curr = curr;
-                *par_prev = prev;
-                *par_next = next;
-                return (*curr_key == *key);
+                    *par_curr = curr;
+                    *par_prev = prev;
+                    *par_next = next;
+                    return (*curr_key == *key);
                 }
-               prev = &curr.ptr->next;
+                prev = &curr.ptr->next;
             } else {
                 AbaPtr<Node> tmp, tmp1;
                 tmp.ptr = curr.ptr;
@@ -298,7 +295,7 @@ private:
                 tmp1.ptr = next.ptr;
                 tmp1.tag = curr.tag + 1;
                 if (!prev->full.compare_exchange_strong(tmp, tmp1)) {
-                goto try_again;
+                    goto try_again;
                 }
             }
             curr = next;

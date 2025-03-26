@@ -1,5 +1,7 @@
 
 MYDEPS = \
+	NatarajanMittalTreeEBR.hpp \
+	DWNatarajanMittalTreeEBR.hpp\
 	HarrisMichaelLinkedListEBR.hpp \
 	DWHarrisMichaelLinkedListEBR.hpp\
 	HarrisMichaelLinkedListHP.hpp \
@@ -12,7 +14,7 @@ MYDEPS = \
 	ModQueueABAHP.hpp\
 
 bench: $(MYDEPS) bench.cpp BenchmarkLists.hpp
-	clang++ -mcx16 -O3 -std=c++14 bench.cpp -o bench -lstdc++ -lpthread -ljemalloc
+	clang++ -mcx16 -O3 -std=c++14 bench.cpp -o bench -lstdc++ -lpthread -lmimalloc
 
 all: bench
 

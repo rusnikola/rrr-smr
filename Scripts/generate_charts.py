@@ -7,7 +7,10 @@ SCRIPTS_DIR = os.path.dirname(os.path.abspath(__file__))
 
 chart_scripts = [
     os.path.join(SCRIPTS_DIR, "generate_list_charts.py"),
-    os.path.join(SCRIPTS_DIR, "generate_queue_charts.py")
+    os.path.join(SCRIPTS_DIR, "generate_list_random_charts.py"),
+    os.path.join(SCRIPTS_DIR, "generate_queue_charts.py"),
+    os.path.join(SCRIPTS_DIR, "generate_queue_random_charts.py"),
+    os.path.join(SCRIPTS_DIR, "generate_tree_charts.py")
 ]
 
 for script in chart_scripts:

@@ -44,20 +44,15 @@ class HarrisMichaelLinkedListHP {
 private:
     struct Node {
         T* key;
-        T** myArray;
         std::atomic<Node*> next;
+        T* myArray[0];
 
         Node(T* key, size_t payloadSize) : key{key}, next{nullptr} {
-               size_t arraySize = payloadSize / sizeof(T*);
-            myArray = new T*[arraySize];
+            size_t arraySize = payloadSize / sizeof(T*);
 
             for (size_t i = 0; i < arraySize; i++) {
                 myArray[i] = key;
             }
-        }
-
-        ~Node() {
-            delete[] myArray;
         }
     };
 
@@ -71,16 +66,18 @@ private:
     const int maxThreads;
     const size_t payloadSize;
 
-    HazardPointers<Node> hp {3, maxThreads};
     const int kHp0 = 0;
     const int kHp1 = 1;
     const int kHp2 = 2;
 
+    HazardPointers<Node> hp {3, maxThreads, payloadSize >= 1024};
+
 public:
 
     HarrisMichaelLinkedListHP(const int maxThreads, const size_t payloadBytes) : maxThreads{maxThreads}, payloadSize{payloadBytes} {
-         for (size_t i = 0; i < N; ++i) {
-            head[i].list.store(new Node(nullptr, payloadSize));
+        for (size_t i = 0; i < N; i++) {
+            void* buffer = malloc(sizeof(Node) + payloadSize);
+            head[i].list.store(new(buffer) Node(nullptr, payloadSize));
         }
     }
 
@@ -93,10 +90,11 @@ public:
     {
         Node *curr, *next;
         std::atomic<Node*> *prev;
-        Node* newNode = new Node(key, payloadSize);
+        void* buffer = malloc(sizeof(Node) + payloadSize);
+        Node* newNode = new(buffer) Node(key, payloadSize);
         while (true) {
             if (find(key, &prev, &curr, &next, tid, listIndex)) {
-                delete newNode; 
+                free(newNode);
                 hp.clear(tid);
                 return false;
             }

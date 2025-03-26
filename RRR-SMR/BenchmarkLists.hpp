@@ -36,15 +36,17 @@
 #include <vector>
 #include <algorithm>
 #include <random>
-#include "HarrisMichaelLinkedListEBR.hpp" 
+#include "NatarajanMittalTreeEBR.hpp"
+#include "DWNatarajanMittalTreeEBR.hpp"
+#include "HarrisMichaelLinkedListEBR.hpp"
 #include "DWHarrisMichaelLinkedListEBR.hpp"
-#include "HarrisMichaelLinkedListHP.hpp" 
+#include "HarrisMichaelLinkedListHP.hpp"
 #include "DWHarrisMichaelLinkedListHP.hpp"
-#include "MSQueueEBR.hpp" 
+#include "MSQueueEBR.hpp"
 #include "MSQueueABAEBR.hpp"
-#include "ModQueueABAEBR.hpp" 
+#include "ModQueueABAEBR.hpp"
 #include "MSQueueHP.hpp"
-#include "MSQueueABAHP.hpp" 
+#include "MSQueueABAHP.hpp"
 #include "ModQueueABAHP.hpp"
 
 
@@ -72,7 +74,7 @@ private:
         }
         long long getSeq() const {
             return seq;
-    	}
+        }
     };
 
     struct Result {
@@ -115,76 +117,90 @@ public:
         UserData* udarray[numElements];
         
         for (size_t i = 0; i < numElements; ++i) {
-        	 udarray[i] = new UserData(i);
-    	}    
-        
+             udarray[i] = new UserData(i);
+        }
+
+        if(ds == "tree"){
+            std::vector<long long> uniqueNumbers(numElements);
+            std::iota(uniqueNumbers.begin(), uniqueNumbers.end(), 0);
+
+            std::random_device rd;
+            std::mt19937 g(rd());
+            std::shuffle(uniqueNumbers.begin(), uniqueNumbers.end(), g);
+
+            for (size_t i = 0; i < numElements; i++) {
+                udarray[i] = new UserData(uniqueNumbers[i]);
+            }
+        }
+
         size_t barray[numElements];
-		        
+
         auto rw_lambda = [this,&quit,&startFlag,&list,&udarray,&numElements, &barray, &ds, &isPairwise, &recyclingPercentage](long long *ops, const int tid) {
             long long numOps = 0;
             size_t listIndex = 0;
+            bool isQueue = (ds == "queue");
 
             uint64_t r = rand();
-			std::mt19937_64 gen_k(r);
-			std::mt19937_64 gen_p(r+1);
-	
-			auto sliceSize = (unsigned int) (numElements/numThreads);		
+            std::mt19937_64 gen_k(r);
+            std::mt19937_64 gen_p(r+1);
+
+            auto sliceSize = (unsigned int) (numElements/numThreads);
             while (!startFlag.load()) { }
             while (!quit.load(std::memory_order_acquire)) {
                 r = gen_k();
-				auto seedSize = (unsigned int) (r%sliceSize);
-				auto ix = ((tid * sliceSize) + seedSize);
-				int op = gen_p()%100;
-				if(isPairwise){
-					if(op < recyclingPercentage){
-						listIndex = (barray[ix] + 1) % N;
-				        if(list->move(udarray[ix], tid, barray[ix], listIndex)){
-					        barray[ix] = listIndex;
-					        numOps += 1;
-				        }
-				        numOps += 1;
-					} else {
-						if(ds == "queue"){
-							list->insert(udarray[ix], tid, barray[ix]);
-							list->remove(udarray[ix], tid, barray[ix]);
-                			numOps += 2;
-						} else{
-							list->remove(udarray[ix], tid, barray[ix]);
-							list->insert(udarray[ix], tid, barray[ix]);
-                			numOps += 2;
-						}
-					}
-				} else{
-					if(op < recyclingPercentage){
-						listIndex = (barray[ix] + 1) % N;
-				        if(list->move(udarray[ix], tid, barray[ix], listIndex)){
-					        barray[ix] = listIndex;
-					        numOps += 1;
-				        }
-				        numOps += 1;
-					} else {
-						op = gen_p()%100;
-						if(op < 50){
-							list->remove(udarray[ix], tid, barray[ix]);
-						} else {
-							list->insert(udarray[ix], tid, barray[ix]);
-						}
-                		numOps += 1;
-					}
-				}
+                auto seedSize = (unsigned int) (r%sliceSize);
+                auto ix = ((tid * sliceSize) + seedSize);
+                int op = gen_p()%100;
+                if(isPairwise){
+                    if(op < recyclingPercentage){
+                        listIndex = (barray[ix] + 1) % N;
+                        if(list->move(udarray[ix], tid, barray[ix], listIndex)){
+                            barray[ix] = listIndex;
+                            numOps += 1;
+                        }
+                        numOps += 1;
+                    } else {
+                        if(isQueue){
+                            list->insert(udarray[ix], tid, barray[ix]);
+                            list->remove(udarray[ix], tid, barray[ix]);
+                            numOps += 2;
+                        } else{
+                            list->remove(udarray[ix], tid, barray[ix]);
+                            list->insert(udarray[ix], tid, barray[ix]);
+                            numOps += 2;
+                        }
+                    }
+                } else{
+                    if(op < recyclingPercentage){
+                        listIndex = (barray[ix] + 1) % N;
+                        if(list->move(udarray[ix], tid, barray[ix], listIndex)){
+                            barray[ix] = listIndex;
+                            numOps += 1;
+                        }
+                        numOps += 1;
+                    } else {
+                        op = gen_p()%100;
+                        if(op < 50){
+                            list->remove(udarray[ix], tid, barray[ix]);
+                        } else {
+                            list->insert(udarray[ix], tid, barray[ix]);
+                        }
+                        numOps += 1;
+                    }
+                }
             }
             *ops = numOps;
         };
 
         for (int irun = 0; irun < numRuns; irun++) {
             list = new L(numThreads, payloadBytes);
-        	
+
             for (size_t i = 0; i < numElements; i++) barray[i] = 0;
             for (int i = 0; i < numElements; i++) list->insert(udarray[i], 0);
             
             if (irun == 0) {
-            	cout<<endl<<endl << "######### Benchmark:   " << list->className() << "   #########  \n\n";
-            	className = list->className();
+                cout<<endl<<endl << "######### Benchmark:   " << list->className() << "   #########  \n\n";
+                className = list->className();
             }
             thread rwThreads[numThreads];
             for (int tid = 0; tid < numThreads; tid++) rwThreads[tid] = thread(rw_lambda, &ops[tid][irun], tid);
@@ -198,12 +214,12 @@ public:
             for (int tid = 0; tid < numThreads; tid++) mem[tid][irun] = list->calculate_space(tid);
             
             
-            if(ds == "list"){
-            	for (int i = 0; i < numElements; i++) {
-					list->remove(udarray[i], 0, barray[i]);
-				}
-			}
-			
+            if(ds == "tree" || ds == "list"){
+                for (int i = 0; i < numElements; i++) {
+                    list->remove(udarray[i], 0, barray[i]);
+                }
+            }
+
             delete list;
         }
 
@@ -239,15 +255,15 @@ public:
         auto mem_delta = (mem_medianops == 0) ? 0 : (long)(100. * (mem_maxops - mem_minops) / ((double)mem_medianops));
         
         for (int irun = 0; irun < numRuns; irun++) {
-        	std::cout << "\n\n#### RUN " << (irun + 1) << " RESULT: ####" << "\n";
-        	std::cout << "\n----- Benchmark=" << className <<   "   numElements=" << numElements << "   numThreads=" << numThreads << "   testLength=" << testLengthSeconds.count() << "s -----\n";
-        	
-        	std::cout << "Ops/sec = " << (agg[irun] / testLengthSeconds.count()) << "\n";
-        	std::cout << "memory_usage (Bytes) = " << mem_agg[irun] << "\n";
+            std::cout << "\n\n#### RUN " << (irun + 1) << " RESULT: ####" << "\n";
+            std::cout << "\n----- Benchmark=" << className <<   "   numElements=" << numElements << "   numThreads=" << numThreads << "   testLength=" << testLengthSeconds.count() << "s -----\n";
+
+            std::cout << "Ops/sec = " << (agg[irun] / testLengthSeconds.count()) << "\n";
+            std::cout << "memory_usage (Bytes) = " << mem_agg[irun] << "\n";
         }
-        
+
         std::cout << "\n\n###### MEDIAN RESULT FOR ALL " << numRuns << " RUNS: ######" << "\n";
-      	std::cout << "\n----- Benchmark=" << className <<   "   numElements=" << numElements << "   numThreads=" << numThreads << "   testLength=" << testLengthSeconds.count() << "s -----\n";
+          std::cout << "\n----- Benchmark=" << className <<   "   numElements=" << numElements << "   numThreads=" << numThreads << "   testLength=" << testLengthSeconds.count() << "s -----\n";
         std::cout << "Ops/sec = " << medianops << "   delta = " << delta << "%   min = " << minops << "   max = " << maxops << "\n";
         std::cout << "memory_usage (Bytes) = " << mem_medianops << "   delta = " << mem_delta << "%   min = " << mem_minops << "   max = " << mem_maxops << "\n";
          return {medianops, mem_medianops};
@@ -255,20 +271,26 @@ public:
 
 public:
 
-    static void allThroughputTests(const string& ds, int testLengthSeconds, bool isPairwise, size_t payloadBytes, int numElements, int recyclingPercentage) {
-        vector<int> threadList = { 1, 16, 32, 64, 96, 128 };
-        //vector<int> threadList = { 1, 2, 4, 6, 8 }; //for laptop
+    static void allThroughputTests(const string& ds, int testLengthSeconds, bool isPairwise, size_t payloadBytes, int numElements, int recyclingPercentage, int userThreadCount = -1) {
+        vector<int> threadList;
+        if (userThreadCount > 0) {
+            threadList = { userThreadCount };
+        } else {
+            threadList = { 1, 16, 32, 64, 128, 256 };
+        }
+
+        //threadList = { 1, 2, 4, 6, 8 }; //for laptop
         const int numRuns = 5;
         const seconds testLength = seconds(testLengthSeconds);
         long long ops[8][threadList.size()];
-	    long long mem[8][threadList.size()];
+        long long mem[8][threadList.size()];
 
         if(ds == "list"){
-        	const int LHP = 0;
-		    const int DWLHP = 1;
-		    const int LEBR = 2;
-		    const int DWLEBR = 3;
-		    
+            const int LHP = 0;
+            const int DWLHP = 1;
+            const int LEBR = 2;
+            const int DWLEBR = 3;
+
             for (int ithread = 0; ithread < threadList.size(); ithread++) {
                 auto nThreads = threadList[ithread];
                 BenchmarkLists bench(nThreads, payloadBytes);
@@ -291,13 +313,13 @@ public:
             }
         } else if(ds == "queue") {
 
-		    const int MSQUEUEHP = 0;
-			const int MSQUEUEABAHP = 1;
-			const int MODQUEUEABAHP = 2;
-			const int MSQUEUEEBR = 3;
-			const int MSQUEUEABAEBR = 4;
-			const int MODQUEUEABAEBR = 5;
-		    
+            const int MSQUEUEHP = 0;
+            const int MSQUEUEABAHP = 1;
+            const int MODQUEUEABAHP = 2;
+            const int MSQUEUEEBR = 3;
+            const int MSQUEUEABAEBR = 4;
+            const int MODQUEUEABAEBR = 5;
+
             for (int ithread = 0; ithread < threadList.size(); ithread++) {
                 auto nThreads = threadList[ithread];
                 BenchmarkLists bench(nThreads, payloadBytes);
@@ -326,20 +348,37 @@ public:
                 ops[MODQUEUEABAEBR][ithread] = result6.first;
                 mem[MODQUEUEABAEBR][ithread] = result6.second;
             }
-		}
-		
-		cout<<"\n\nFINAL RESULTS (FOR CHARTS):"<<endl<<endl;
+        } else if(ds == "tree"){
+            const int NMTREEEBR = 0;
+            const int DWNMTREEEBR = 1;
+
+            for (int ithread = 0; ithread < threadList.size(); ithread++) {
+                auto nThreads = threadList[ithread];
+                BenchmarkLists bench(nThreads, payloadBytes);
+                auto result1 = bench.benchmark<NatarajanMittalTreeEBR<UserData, 2>, 2>(testLength, numRuns, numElements, payloadBytes, ds, isPairwise, recyclingPercentage);
+                ops[NMTREEEBR][ithread] = result1.first;
+                mem[NMTREEEBR][ithread] = result1.second;
+
+                auto result2 = bench.benchmark<DWNatarajanMittalTreeEBR<UserData, 2>, 2>(testLength, numRuns, numElements, payloadBytes, ds, isPairwise, recyclingPercentage);
+                ops[DWNMTREEEBR][ithread] = result2.first;
+                mem[DWNMTREEEBR][ithread] = result2.second;
+            }
+        }
+
+        cout<<"\n\nFINAL RESULTS (FOR CHARTS):"<<endl<<endl;
         cout << "\nResults in ops per second for numRuns=" << numRuns << ",  length=" << testLength.count() << "s \n";
         std::cout << "\nNumber of elements: " << numElements << "\n\n";
             int classSize;
             if(ds == "list"){
-            	classSize = 4;
-            	cout << "Threads, HarrisMichaelListHP, DWHarrisMichaelListHP, HarrisMichaelListEBR, DWHarrisMichaelListEBR, HarrisMichaelListHP_Memory_Usage, DWHarrisMichaelListHP_Memory_Usage, HarrisMichaelListEBR_Memory_Usage, DWHarrisMichaelListEBR_Memory_Usage\n";
+                classSize = 4;
+                cout << "Threads, HarrisMichaelListHP, DWHarrisMichaelListHP, HarrisMichaelListEBR, DWHarrisMichaelListEBR, HarrisMichaelListHP_Memory_Usage, DWHarrisMichaelListHP_Memory_Usage, HarrisMichaelListEBR_Memory_Usage, DWHarrisMichaelListEBR_Memory_Usage\n";
             } else if(ds == "queue") {
-            	classSize = 6;
-            	cout << "Threads, MSQueueHP, MSQueueABAHP, ModQueueHP, MSQueueEBR, MSQueueABAEBR, ModQueueEBR, MSQueueHP_Memory_Usage, MSQueueABAHP_Memory_Usage, ModQueueHP_Memory_Usage, MSQueueEBR_Memory_Usage, MSQueueABAEBR_Memory_Usage, ModQueueEBR_Memory_Usage\n";
-			} 
-			
+                classSize = 6;
+                cout << "Threads, MSQueueHP, MSQueueABAHP, ModQueueHP, MSQueueEBR, MSQueueABAEBR, ModQueueEBR, MSQueueHP_Memory_Usage, MSQueueABAHP_Memory_Usage, ModQueueHP_Memory_Usage, MSQueueEBR_Memory_Usage, MSQueueABAEBR_Memory_Usage, ModQueueEBR_Memory_Usage\n";
+            } else if(ds == "tree"){
+                classSize = 2;
+                cout << "Threads, NatarajanMittalTreeEBR, DWNatarajanMittalTreeEBR, NatarajanMittalTreeEBR_Memory_Usage, DWNatarajanMittalTreeEBR_Memory_Usage\n";
+            }
             for (int ithread = 0; ithread < threadList.size(); ithread++) {
                 auto nThreads = threadList[ithread];
                 cout << nThreads << ", ";

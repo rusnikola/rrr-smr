@@ -47,37 +47,33 @@ private:
     struct Node {
         size_t value;
         std::atomic<Node*> next;
-        size_t* myArray;
+        size_t myArray[0];
         
         Node(size_t payloadSize) {
             size_t arraySize = payloadSize / sizeof(size_t);
-            myArray = new size_t[arraySize];
-
             for (size_t i = 0; i < arraySize; i++) {
                 myArray[i] = i;
             }
         }
-        
-         ~Node() {
-            delete[] myArray;
-        }
     };
 
     struct Queue {
-        std::atomic<Node*> Head;
-        std::atomic<Node*> Tail;
+        alignas(128) std::atomic<Node*> Head;
+        alignas(128) std::atomic<Node*> Tail;
     };
 
     Queue Q[N];
-    
+    alignas(128) char pad[0];
+
     const int maxThreads;
     const size_t payloadSize;
-    EBR<Node> ebr {maxThreads};
+    EBR<Node> ebr {maxThreads, payloadSize >= 1024, payloadSize >= 1024};
 
 public:
     MSQueueEBR(const int maxThreads, const size_t payloadBytes) : maxThreads{maxThreads}, payloadSize{payloadBytes} {
-        for (size_t i = 0; i < N; ++i) {
-            Node* node = new Node(payloadSize);
+        for (size_t i = 0; i < N; i++) {
+            void* buffer = malloc(sizeof(Node) + payloadSize);
+            Node* node = new(buffer) Node(payloadSize);
             node->next.store(nullptr);
             Q[i].Head.store(node);
             Q[i].Tail.store(node);
@@ -93,7 +89,8 @@ public:
     std::string className() { return "MSQueueEBR"; }
 
     void insert(T* key, const int tid, size_t listIndex = 0) {
-        Node* node = new Node(payloadSize);
+        void* buffer = malloc(sizeof(Node) + payloadSize);
+        Node* node = new(buffer) Node(payloadSize);
         node->value = key->getSeq();
         node->next.store(nullptr);
         Node* tail;
@@ -105,7 +102,6 @@ public:
             if (tail == Q[listIndex].Tail.load()) {
                 if (next == nullptr) {
                     if (tail->next.compare_exchange_strong(next, node)) {
-                        ebr.read_unlock(tid);
                         break;
                     }
                 } else {
@@ -114,6 +110,7 @@ public:
             }
         }
         Q[listIndex].Tail.compare_exchange_strong(tail, node);
+        ebr.read_unlock(tid);
     }
 
     bool remove(T* key, const int tid, size_t listIndex = 0) {

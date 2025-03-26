@@ -47,40 +47,39 @@ private:
     struct Node {
         size_t value;
         std::atomic<Node*> next;
-        size_t* myArray;
-        
+        size_t myArray[0];
+
         Node(size_t payloadSize) {
             size_t arraySize = payloadSize / sizeof(size_t);
-            myArray = new size_t[arraySize];
 
             for (size_t i = 0; i < arraySize; i++) {
                 myArray[i] = i;
             }
         }
-        
-         ~Node() {
-            delete[] myArray;
-        }
     };
 
     struct Queue {
-        std::atomic<Node*> Head;
-        std::atomic<Node*> Tail;
+        alignas(128) std::atomic<Node*> Head;
+        alignas(128) std::atomic<Node*> Tail;
     };
 
     Queue Q[N];
-    
+    alignas(128) char pad[0];
+
     const int maxThreads;
     const size_t payloadSize;
-    HazardPointers<Node> hp {2, maxThreads};
+
     const int kHpTail = 0;
     const int kHpHead = 0;
     const int kHpNext = 1;
 
+    HazardPointers<Node> hp {2, maxThreads, payloadSize >= 1024};
+
 public:
     MSQueueHP(const int maxThreads, const size_t payloadBytes) : maxThreads{maxThreads}, payloadSize{payloadBytes} {
-        for (size_t i = 0; i < N; ++i) {
-            Node* node = new Node(payloadSize);
+        for (size_t i = 0; i < N; i++) {
+            void* buffer = malloc(sizeof(Node) + payloadSize);
+            Node* node = new(buffer) Node(payloadSize);
             node->next.store(nullptr);
             Q[i].Head.store(node);
             Q[i].Tail.store(node);
@@ -96,12 +95,15 @@ public:
     std::string className() { return "MSQueueHP"; }
 
     void insert(T* key, const int tid, size_t listIndex = 0) {
-        Node* node = new Node(payloadSize);
+        void* buffer = malloc(sizeof(Node) + payloadSize);
+        Node* node = new(buffer) Node(payloadSize);
         node->value = key->getSeq();
         node->next.store(nullptr);
         Node* tail;
         while (true) {
-            tail = hp.protect(kHpTail, Q[listIndex].Tail, tid);
+            tail = hp.protectPtr(kHpTail, Q[listIndex].Tail.load(), tid);
+            if (Q[listIndex].Tail.load() != tail)
+                continue;
             Node* next = tail->next.load();
 
             if (tail == Q[listIndex].Tail.load()) {
@@ -122,7 +124,9 @@ public:
         Node* head;
         hp.take_snapshot(tid);
         while (true) {
-            head = hp.protect(kHpHead, Q[listIndex].Head, tid);
+            head = hp.protectPtr(kHpHead, Q[listIndex].Head.load(), tid);
+            if (Q[listIndex].Head.load() != head)
+                continue;
             Node* tail = Q[listIndex].Tail.load();
             Node* next = hp.protectPtr(kHpNext, head->next.load(), tid);
 
