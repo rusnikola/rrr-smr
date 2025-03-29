@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# A full-blown test which runs around 26 hours
+
 cd "$(dirname "$0")/.." || { echo "Failed to navigate to PLDI directory"; exit 1; }
 
 DATA_DIR="Data"
@@ -45,32 +47,26 @@ commands=(
     'stdbuf -oL ./RRR-SMR/bench list 60 P 128B 4096 20% 64'
     'stdbuf -oL ./RRR-SMR/bench list 60 P 128B 4096 30% 64'
     'stdbuf -oL ./RRR-SMR/bench list 60 P 128B 4096 40% 64'
-    'stdbuf -oL ./RRR-SMR/bench list 60 P 128B 4096 60% 64'
     'stdbuf -oL ./RRR-SMR/bench list 60 P 64KB 4096 10% 64'
     'stdbuf -oL ./RRR-SMR/bench list 60 P 64KB 4096 20% 64'
     'stdbuf -oL ./RRR-SMR/bench list 60 P 64KB 4096 30% 64'
     'stdbuf -oL ./RRR-SMR/bench list 60 P 64KB 4096 40% 64'
-    'stdbuf -oL ./RRR-SMR/bench list 60 P 64KB 4096 60% 64'
     'stdbuf -oL ./RRR-SMR/bench queue 20 P 0B 256 10% 32'
     'stdbuf -oL ./RRR-SMR/bench queue 20 P 0B 256 20% 32'
     'stdbuf -oL ./RRR-SMR/bench queue 20 P 0B 256 30% 32'
     'stdbuf -oL ./RRR-SMR/bench queue 20 P 0B 256 40% 32'
-    'stdbuf -oL ./RRR-SMR/bench queue 20 P 0B 256 60% 32'
     'stdbuf -oL ./RRR-SMR/bench queue 20 R 0B 256 10% 32'
     'stdbuf -oL ./RRR-SMR/bench queue 20 R 0B 256 20% 32'
     'stdbuf -oL ./RRR-SMR/bench queue 20 R 0B 256 30% 32'
     'stdbuf -oL ./RRR-SMR/bench queue 20 R 0B 256 40% 32'
-    'stdbuf -oL ./RRR-SMR/bench queue 20 R 0B 256 60% 32'
     'stdbuf -oL ./RRR-SMR/bench queue 20 P 64KB 256 10% 32'
     'stdbuf -oL ./RRR-SMR/bench queue 20 P 64KB 256 20% 32'
     'stdbuf -oL ./RRR-SMR/bench queue 20 P 64KB 256 30% 32'
     'stdbuf -oL ./RRR-SMR/bench queue 20 P 64KB 256 40% 32'
-    'stdbuf -oL ./RRR-SMR/bench queue 20 P 64KB 256 60% 32'
     'stdbuf -oL ./RRR-SMR/bench queue 20 R 64KB 256 10% 32'
     'stdbuf -oL ./RRR-SMR/bench queue 20 R 64KB 256 20% 32'
     'stdbuf -oL ./RRR-SMR/bench queue 20 R 64KB 256 30% 32'
     'stdbuf -oL ./RRR-SMR/bench queue 20 R 64KB 256 40% 32'
-    'stdbuf -oL ./RRR-SMR/bench queue 20 R 64KB 256 60% 32'
     'stdbuf -oL ./RRR-SMR/bench tree 60 P 128B 65536 50%'
     'stdbuf -oL ./RRR-SMR/bench tree 60 P 128B 65536 90%'
     'stdbuf -oL ./RRR-SMR/bench tree 60 P 64KB 65536 50%'

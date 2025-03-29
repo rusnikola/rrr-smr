@@ -42,6 +42,13 @@ for file_path in txt_files:
 
     file_name = os.path.splitext(os.path.basename(file_path))[0]
 
+    parts = file_name.split("_")
+    if len(parts) != 4:
+        print(f"Skipping file with unexpected format: {file_name}")
+        continue
+
+    _, payload, _, percent = parts
+    percent_clean = percent.replace("%", "p")
 
     data_started = False
     throughput_data = []
@@ -99,17 +106,17 @@ for file_path in txt_files:
         frame.set_linestyle('--')
         frame.set_linewidth(1.5)
         for text in legend.get_texts():
-            text.set_fontsize(17)
+            text.set_fontsize(18)
             text.set_fontweight='bold'
 
 
-        svg_file_path = os.path.join(TREE_CHARTS_DIR, f"{file_name}_{chart_name}.svg")
-        plt.savefig(svg_file_path, format="svg", bbox_inches="tight")
-        plt.close(fig)
-        
+        output_prefix = f"tree_{payload}_{percent_clean}_{chart_name}"
+        svg_path = os.path.join(TREE_CHARTS_DIR, f"{output_prefix}.svg")
+        pdf_path = os.path.join(TREE_CHARTS_DIR, f"{output_prefix}.pdf")
 
-        pdf_file_path = os.path.join(TREE_CHARTS_DIR, f"{file_name}_{chart_name}.pdf")
-        cairosvg.svg2pdf(url=svg_file_path, write_to=pdf_file_path)
+        plt.savefig(svg_path, format="svg", bbox_inches="tight")
+        plt.close(fig)
+        cairosvg.svg2pdf(url=svg_path, write_to=pdf_path)
 
 
     plot_bar_chart(throughput_data, "Throughput, ops/sec", "throughput")

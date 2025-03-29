@@ -17,7 +17,7 @@ os.makedirs(BASE_QUEUE_CHARTS_DIR, exist_ok=True)
 
 # Config
 recycling_percentages = ["10%", "20%", "30%", "40%"]
-workloads = ["0B", "64KB"]
+workloads = ["0B", "64KB", "1KB"] # 1KB is for the lightweight test
 hatches = ['-', '\\', '/', '*', 'O', '.']
 colors = ['gold', 'g', 'm', 'c', 'r', 'teal']
 benchmarks = [
@@ -67,6 +67,11 @@ for mode_dir, mode_label, mode_prefix in [
     (RANDOM_RESULTS_DIR, "Random", "R")
 ]:
     for workload in workloads:
+        search_pattern = f"{mode_prefix}_{workload}_*.txt"
+        matching_files = glob.glob(os.path.join(mode_dir, search_pattern))
+        if not matching_files:
+            continue
+
         throughput_data = {bm: [] for bm in benchmarks}
         memory_data = {bm: [] for bm in benchmarks}
 

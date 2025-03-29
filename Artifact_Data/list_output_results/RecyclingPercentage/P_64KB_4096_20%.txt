@@ -1,0 +1,195 @@
+
+
+######### Benchmark:   HarrisMichaelLinkedListHP   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=HarrisMichaelLinkedListHP   numElements=4096   numThreads=64   testLength=60s -----
+Ops/sec = 1137247
+memory_usage (Bytes) = 8390649
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=HarrisMichaelLinkedListHP   numElements=4096   numThreads=64   testLength=60s -----
+Ops/sec = 1138100
+memory_usage (Bytes) = 8390649
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=HarrisMichaelLinkedListHP   numElements=4096   numThreads=64   testLength=60s -----
+Ops/sec = 1138261
+memory_usage (Bytes) = 8390651
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=HarrisMichaelLinkedListHP   numElements=4096   numThreads=64   testLength=60s -----
+Ops/sec = 1139967
+memory_usage (Bytes) = 8390655
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=HarrisMichaelLinkedListHP   numElements=4096   numThreads=64   testLength=60s -----
+Ops/sec = 1142056
+memory_usage (Bytes) = 8390657
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=HarrisMichaelLinkedListHP   numElements=4096   numThreads=64   testLength=60s -----
+Ops/sec = 1138261   delta = 0%   min = 1137247   max = 1142056
+memory_usage (Bytes) = 8390651   delta = 0%   min = 8390649   max = 8390657
+
+
+######### Benchmark:   DWHarrisMichaelLinkedListHP   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=DWHarrisMichaelLinkedListHP   numElements=4096   numThreads=64   testLength=60s -----
+Ops/sec = 1246222
+memory_usage (Bytes) = 8392160
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=DWHarrisMichaelLinkedListHP   numElements=4096   numThreads=64   testLength=60s -----
+Ops/sec = 1248583
+memory_usage (Bytes) = 8392673
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=DWHarrisMichaelLinkedListHP   numElements=4096   numThreads=64   testLength=60s -----
+Ops/sec = 1249331
+memory_usage (Bytes) = 8392986
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=DWHarrisMichaelLinkedListHP   numElements=4096   numThreads=64   testLength=60s -----
+Ops/sec = 1250006
+memory_usage (Bytes) = 8393022
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=DWHarrisMichaelLinkedListHP   numElements=4096   numThreads=64   testLength=60s -----
+Ops/sec = 1251671
+memory_usage (Bytes) = 8393056
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=DWHarrisMichaelLinkedListHP   numElements=4096   numThreads=64   testLength=60s -----
+Ops/sec = 1249331   delta = 0%   min = 1246222   max = 1251671
+memory_usage (Bytes) = 8392986   delta = 0%   min = 8392160   max = 8393056
+
+
+######### Benchmark:   HarrisMichaelLinkedListEBR   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=HarrisMichaelLinkedListEBR   numElements=4096   numThreads=64   testLength=60s -----
+Ops/sec = 1323746
+memory_usage (Bytes) = 11580021
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=HarrisMichaelLinkedListEBR   numElements=4096   numThreads=64   testLength=60s -----
+Ops/sec = 1327511
+memory_usage (Bytes) = 11642335
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=HarrisMichaelLinkedListEBR   numElements=4096   numThreads=64   testLength=60s -----
+Ops/sec = 1328534
+memory_usage (Bytes) = 11670245
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=HarrisMichaelLinkedListEBR   numElements=4096   numThreads=64   testLength=60s -----
+Ops/sec = 1332715
+memory_usage (Bytes) = 11691632
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=HarrisMichaelLinkedListEBR   numElements=4096   numThreads=64   testLength=60s -----
+Ops/sec = 1334631
+memory_usage (Bytes) = 11724433
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=HarrisMichaelLinkedListEBR   numElements=4096   numThreads=64   testLength=60s -----
+Ops/sec = 1328534   delta = 0%   min = 1323746   max = 1334631
+memory_usage (Bytes) = 11670245   delta = 1%   min = 11580021   max = 11724433
+
+
+######### Benchmark:   DWHarrisMichaelLinkedListEBR   #########  
+
+
+
+#### RUN 1 RESULT: ####
+
+----- Benchmark=DWHarrisMichaelLinkedListEBR   numElements=4096   numThreads=64   testLength=60s -----
+Ops/sec = 1436715
+memory_usage (Bytes) = 13093060
+
+
+#### RUN 2 RESULT: ####
+
+----- Benchmark=DWHarrisMichaelLinkedListEBR   numElements=4096   numThreads=64   testLength=60s -----
+Ops/sec = 1436782
+memory_usage (Bytes) = 13125313
+
+
+#### RUN 3 RESULT: ####
+
+----- Benchmark=DWHarrisMichaelLinkedListEBR   numElements=4096   numThreads=64   testLength=60s -----
+Ops/sec = 1437086
+memory_usage (Bytes) = 13137583
+
+
+#### RUN 4 RESULT: ####
+
+----- Benchmark=DWHarrisMichaelLinkedListEBR   numElements=4096   numThreads=64   testLength=60s -----
+Ops/sec = 1437555
+memory_usage (Bytes) = 13139654
+
+
+#### RUN 5 RESULT: ####
+
+----- Benchmark=DWHarrisMichaelLinkedListEBR   numElements=4096   numThreads=64   testLength=60s -----
+Ops/sec = 1438307
+memory_usage (Bytes) = 13152485
+
+
+###### MEDIAN RESULT FOR ALL 5 RUNS: ######
+
+----- Benchmark=DWHarrisMichaelLinkedListEBR   numElements=4096   numThreads=64   testLength=60s -----
+Ops/sec = 1437086   delta = 0%   min = 1436715   max = 1438307
+memory_usage (Bytes) = 13137583   delta = 0%   min = 13093060   max = 13152485
+
+
+FINAL RESULTS (FOR CHARTS):
+
+
+Results in ops per second for numRuns=5,  length=60s 
+
+Number of elements: 4096
+
+Threads, HarrisMichaelListHP, DWHarrisMichaelListHP, HarrisMichaelListEBR, DWHarrisMichaelListEBR, HarrisMichaelListHP_Memory_Usage, DWHarrisMichaelListHP_Memory_Usage, HarrisMichaelListEBR_Memory_Usage, DWHarrisMichaelListEBR_Memory_Usage
+64, 1138261, 1249331, 1328534, 1437086, 8390651, 8392986, 11670245, 13137583, 

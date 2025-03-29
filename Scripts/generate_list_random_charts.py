@@ -12,7 +12,7 @@ LIST_CHARTS_DIR = os.path.join(DATA_DIR, "list_charts", "RecyclingPercentage")
 os.makedirs(LIST_CHARTS_DIR, exist_ok=True)
 
 recycling_percentages = ["10%", "20%", "30%", "40%"]
-workloads = ["128B", "64KB"]
+workloads = ["128B", "64KB", "1KB"] # 1KB is for the lightweight test
 hatches = ['-', '\\', '/', '*']
 colors = ['gold', 'g', 'm', 'c']
 benchmarks = ["List-HP", "List-ABA-HP (New)", "List-EBR", "List-ABA-EBR (New)"]
@@ -52,6 +52,10 @@ def plot_summary_bar_chart(data_dict, ylabel, chart_name):
 
 
 for workload in workloads:
+    matching_files = glob.glob(os.path.join(LIST_RESULTS_DIR, "RecyclingPercentage", f"*_{workload}_*.txt"))
+    if not matching_files:
+        continue
+
     throughput_data = {bm: [] for bm in benchmarks}
     memory_data = {bm: [] for bm in benchmarks}
 
