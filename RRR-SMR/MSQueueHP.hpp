@@ -1,10 +1,10 @@
 /******************************************************************************
  * Copyright (c) 2014-2016, Pedro Ramalhete, Andreia Correia
- * Copyright (c) 2024-2025, MD Amit Hasan Arovi, Ruslan Nikolaev
+ * Copyright (c) 2024-2025, Md Amit Hasan Arovi, Ruslan Nikolaev
  * All rights reserved.
  *
  * Based on the original MichaelScottQueue.hpp but has been fully re-written
- * by MD Amit Hasan Arovi and Ruslan Nikolaev for the RRR-SMR work.
+ * by Md Amit Hasan Arovi and Ruslan Nikolaev for the RRR-SMR work.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -94,7 +94,8 @@ public:
     
     std::string className() { return "MSQueueHP"; }
 
-    void insert(T* key, const int tid, size_t listIndex = 0) {
+    void insert(T* key, const int tid, size_t listIndex = 0)
+    {
         void* buffer = malloc(sizeof(Node) + payloadSize);
         Node* node = new(buffer) Node(payloadSize);
         node->value = key->getSeq();
@@ -120,7 +121,8 @@ public:
         hp.clear(tid);
     }
 
-    bool remove(T* key, const int tid, size_t listIndex = 0) {
+    bool remove(T* key, const int tid, size_t listIndex = 0)
+    {
         Node* head;
         hp.take_snapshot(tid);
         while (true) {
@@ -149,7 +151,9 @@ public:
         return true;
     }
 
-    bool move(T* key, const int tid, size_t list_from = 0, size_t list_to = 0){
+    // No copy-free move
+    bool move(T* key, const int tid, size_t list_from = 0, size_t list_to = 0)
+    {
         if (remove(key, tid, list_from)){
             insert(key, tid, list_to);
             return true;
@@ -158,7 +162,8 @@ public:
         }
     }
 
-    long long calculate_space(const int tid){
+    long long calculate_space(const int tid)
+    {
         size_t arraySize = payloadSize / sizeof(size_t);
         size_t nodeSize = sizeof(Node) + (arraySize * sizeof(size_t));
         return hp.cal_space(nodeSize, tid);

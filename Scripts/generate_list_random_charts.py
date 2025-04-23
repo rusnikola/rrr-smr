@@ -5,6 +5,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 import cairosvg
 
+#
+# This script processes list data and generates charts
+# (recycling percentage tests)
+#
+
 DATA_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "Data"))
 LIST_RESULTS_DIR = os.path.join(DATA_DIR, "list_output_results")
 LIST_CHARTS_DIR = os.path.join(DATA_DIR, "list_charts", "RecyclingPercentage")

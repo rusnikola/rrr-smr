@@ -1,0 +1,47 @@
+Mapping between files and corresponding figures in the paper
+
+(1). list_charts
+
+list_128B_50p_memory                                       :: Fig. 13(c)
+list_128B_50p_throughput                                   :: Fig. 12(c)
+list_128B_90p_memory                                       :: Fig. 13(a)
+list_128B_90p_throughput                                   :: Fig. 12(a)
+list_64KB_50p_memory                                       :: Fig. 13(d)
+list_64KB_50p_throughput                                   :: Fig. 12(d)
+list_64KB_90p_memory                                       :: Fig. 13(b)
+list_64KB_90p_throughput                                   :: Fig. 12(b)
+
+RecyclingPercentage/list_rp_memory_128B                    :: Fig. 15(a)
+RecyclingPercentage/list_rp_memory_64KB                    :: Fig. 15(b)
+RecyclingPercentage/list_rp_throughput_128B                :: Fig. 14(a)
+RecyclingPercentage/list_rp_throughput_64KB                :: Fig. 14(b)
+
+(2). queue_charts
+
+Random/queue_R_0B_50p_memory                               :: Fig. 9(c)
+Random/queue_R_0B_50p_throughput                           :: Fig. 8(c)
+Random/queue_R_0B_90p_memory                               :: Fig. 9(a)
+Random/queue_R_0B_90p_throughput                           :: Fig. 8(a)
+Random/queue_R_64KB_50p_memory                             :: Fig. 9(d)
+Random/queue_R_64KB_50p_throughput                         :: Fig. 8(d)
+Random/queue_R_64KB_90p_memory                             :: Fig. 9(b)
+Random/queue_R_64KB_90p_throughput                         :: Fig. 8(b)
+
+RecyclingPercentage/Random/queue_rp_memory_Random_0B       :: Fig. 11(a)
+RecyclingPercentage/Random/queue_rp_memory_Random_64KB     :: Fig. 11(b)
+RecyclingPercentage/Random/queue_rp_throughput_Random_0B   :: Fig. 10(a)
+RecyclingPercentage/Random/queue_rp_throughput_Random_64KB :: Fig. 10(b)
+
+Pairwise/* and RecyclingPercentage/Pairwise/* show pairwise in lieu of random
+operations, they are analogous to the above but NOT included into the paper
+
+(3). tree_charts
+
+tree_128B_50p_memory                                       :: Fig. 17(c)
+tree_128B_50p_throughput                                   :: Fig. 16(c)
+tree_128B_90p_memory                                       :: Fig. 17(a)
+tree_128B_90p_throughput                                   :: Fig. 16(a)
+tree_64KB_50p_memory                                       :: Fig. 17(d)
+tree_64KB_50p_throughput                                   :: Fig. 16(d)
+tree_64KB_90p_memory                                       :: Fig. 17(b)
+tree_64KB_90p_throughput                                   :: Fig. 16(b)

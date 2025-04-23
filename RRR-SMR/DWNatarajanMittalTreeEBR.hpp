@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024-2025, MD Amit Hasan Arovi, Ruslan Nikolaev
+ * Copyright (c) 2024-2025, Md Amit Hasan Arovi, Ruslan Nikolaev
  * All Rights Reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -114,8 +114,10 @@ private:
 
     EBR<Node> ebr {maxThreads, false, false};
 
+    // Left and Right flag bits
     #define NT_LFLG 1UL
     #define NT_RFLG 2UL
+    // A special key that is used for sentinel nodes
     #define NT_KEY_NULL ((const T *) nullptr)
 
     static inline Block *unmarkPtr(Block *b) {
@@ -179,7 +181,8 @@ public:
 
     std::string className() { return "DWNatarajanMittalTreeEBR"; }
 
-    void seek(const T *key, int tid, size_t treeIndex = 0) {
+    void seek(const T *key, int tid, size_t treeIndex = 0)
+    {
         SeekRecord *seekRecord = &records[tid];
         AbaPtr<Block> leaf_blk;
         Node *current, *left, *right;
@@ -262,7 +265,8 @@ start_over_leaf:
         }
     }
 
-    bool cleanup(const T *key, int tid) {
+    bool cleanup(const T *key, int tid)
+    {
         SeekRecord *seekRecord = &records[tid];
         Node *ancestor = seekRecord->ancestor;
         Node *parent = seekRecord->parent;
@@ -293,7 +297,8 @@ start_over_leaf:
         return false;
     }
 
-    bool do_insert(const T *key, int tid, size_t treeIndex, Node *newLeaf, Node *newInternal, Block *newBlock) {
+    bool do_insert(const T *key, int tid, size_t treeIndex, Node *newLeaf, Node *newInternal, Block *newBlock)
+    {
         SeekRecord* seekRecord = &records[tid];
 
         while (true) {
@@ -352,7 +357,8 @@ start_over_leaf:
         return false;
     }
 
-    long long calculate_space(const int tid) {
+    long long calculate_space(const int tid)
+    {
         size_t arraySize = payloadSize / sizeof(T*);
         size_t nodeSize = sizeof(Node) + (arraySize * sizeof(T*));
         return ebr.cal_space(nodeSize, tid);
@@ -412,7 +418,8 @@ start_over_leaf:
         }
     }
 
-    bool insert(const T *key, int tid, size_t treeIndex = 0) {
+    bool insert(const T *key, int tid, size_t treeIndex = 0)
+    {
         Block *newBlock = new Block;
         void *buffer = malloc(sizeof(Node) + payloadSize);
         Node *newInternal = new(buffer) Node(newBlock, payloadSize);
@@ -431,7 +438,8 @@ start_over_leaf:
         }
     }
 
-    bool remove(const T *key, int tid, size_t treeIndex = 0) {
+    bool remove(const T *key, int tid, size_t treeIndex = 0)
+    {
         Node *n1 = nullptr, *n2 = nullptr;
         Block *b = nullptr;
         ebr.read_lock(tid);
@@ -447,7 +455,9 @@ start_over_leaf:
         }
     }
 
-    bool move(const T *key, const int tid, size_t list_from = 0, size_t list_to = 0) {
+    // A copy-free move
+    bool move(const T *key, const int tid, size_t list_from = 0, size_t list_to = 0)
+    {
         Node *n1 = nullptr, *n2 = nullptr;
         Block *b = nullptr;
         ebr.read_lock(tid);

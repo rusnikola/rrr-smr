@@ -1,10 +1,10 @@
 /******************************************************************************
 * Copyright (c) 2016-2017, Pedro Ramalhete, Andreia Correia
-* Copyright (c) 2024-2025, MD Amit Hasan Arovi, Ruslan Nikolaev 
+* Copyright (c) 2024-2025, Md Amit Hasan Arovi, Ruslan Nikolaev 
 * All rights reserved.
 *
 * Based on the original URCUGraceVersion.hpp but has been fully re-written
-* by MD Amit Hasan Arovi and Ruslan Nikolaev to avoid spin locks using
+* by Md Amit Hasan Arovi and Ruslan Nikolaev to avoid spin locks using
 * the idea presented in the Interval Based Reclamation paper (PPoPP 2018).
 *
 * Redistribution and use in source and binary forms, with or without

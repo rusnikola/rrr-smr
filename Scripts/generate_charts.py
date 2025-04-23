@@ -1,6 +1,10 @@
 import subprocess
 import os
 
+#
+# The main script which runs all other scripts to generate charts
+# (you can comment out those that you do not need)
+#
 
 SCRIPTS_DIR = os.path.dirname(os.path.abspath(__file__))
 

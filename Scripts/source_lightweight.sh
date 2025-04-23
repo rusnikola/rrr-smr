@@ -2,6 +2,7 @@
 
 # A lightweight version of the test, which uses 1KB instead of 64KB
 # and runs 5 seconds for each data point
+# (you can comment out tests that you do not need)
 
 cd "$(dirname "$0")/.." || { echo "Failed to navigate to PLDI directory"; exit 1; }
 

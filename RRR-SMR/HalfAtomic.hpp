@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024-2025, MD Amit Hasan Arovi, Ruslan Nikolaev
+ * Copyright (c) 2024-2025, Md Amit Hasan Arovi, Ruslan Nikolaev
  * All Rights Reserved.
  *
  * Redistribution and use in source and binary forms, with or without

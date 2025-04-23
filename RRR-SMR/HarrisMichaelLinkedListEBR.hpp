@@ -1,6 +1,6 @@
 /******************************************************************************
  * Copyright (c) 2016, Pedro Ramalhete, Andreia Correia
- * Copyright (c) 2024-2025, MD Amit Hasan Arovi, Ruslan Nikolaev
+ * Copyright (c) 2024-2025, Md Amit Hasan Arovi, Ruslan Nikolaev
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -114,13 +114,15 @@ public:
                 ebr.read_unlock(tid);
                 return false;
             }
+            // Success: logically delete the node
             Node *tmp = next;
             if (!curr->next.compare_exchange_strong(tmp, getMarked(next))) {
                 continue;
             }
 
+            // One attempt to physically unlink the node
             tmp = curr;
-            if(prev->compare_exchange_strong(tmp, next)){ /* Unlink */
+            if (prev->compare_exchange_strong(tmp, next)) {
                 ebr.smr_retire(curr, tid);
                 ebr.read_unlock(tid);
             } else {
@@ -130,15 +132,17 @@ public:
             return true;
         }
     }
-    
-    bool move(T* key, const int tid, size_t list_from = 0, size_t list_to = 0){
+
+    // No copy-free move
+    bool move(T* key, const int tid, size_t list_from = 0, size_t list_to = 0)
+    {
         bool ok = remove(key, tid, list_from);
-        if (!ok){
+        if (!ok) {
             return false;
         }
-         return insert(key, tid, list_to);
+        return insert(key, tid, list_to);
     }
-    
+
     bool contains (T* key, const int tid, size_t listIndex = 0)
     {
         Node *curr, *next;
@@ -148,8 +152,9 @@ public:
         ebr.read_unlock(tid);
         return isContains;
     }
-    
-    long long calculate_space(const int tid){
+
+    long long calculate_space(const int tid)
+    {
         size_t arraySize = payloadSize / sizeof(T*);
         size_t nodeSize = sizeof(Node) + (arraySize * sizeof(T*));
         return ebr.cal_space(nodeSize, tid);

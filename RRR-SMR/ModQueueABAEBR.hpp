@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024-2025, MD Amit Hasan Arovi, Ruslan Nikolaev
+ * Copyright (c) 2024-2025, Md Amit Hasan Arovi, Ruslan Nikolaev
  * All Rights Reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -107,8 +107,9 @@ public:
         }
     }
 
-    // fresh enqueue (no need to find the max tag)
-    void do_enqueue(T* key, const int tid, size_t listIndex, Node* node) {
+    // Fresh enqueue (no need to find the max tag)
+    void do_enqueue(T* key, const int tid, size_t listIndex, Node* node)
+    {
         AbaPtr<Node> curr, new_node, new_tail, new_tmp;
         AtomicNode<Node>* tail = &Q[listIndex].Tail;
         
@@ -134,8 +135,9 @@ public:
         tail->full.compare_exchange_strong(curr, new_tmp);
     }
 
-    // non-fresh enqueue (need to find the max tag)
-    void do_enqueue(T* key, const int tid, size_t listIndex, Node* node, size_t tag) {
+    // Non-fresh enqueue (need to find the max tag)
+    void do_enqueue(T* key, const int tid, size_t listIndex, Node* node, size_t tag)
+    {
         AbaPtr<Node> curr, new_node, new_tail, new_tmp;
         AtomicNode<Node>* tail = &Q[listIndex].Tail;
         
@@ -165,7 +167,8 @@ public:
         tail->full.compare_exchange_strong(curr, new_tmp);
     }
 
-    void insert(T* key, const int tid, size_t listIndex = 0) {
+    void insert(T* key, const int tid, size_t listIndex = 0)
+    {
         void* buffer = malloc(sizeof(Node) + payloadSize);
         Node* node = new(buffer) Node(payloadSize);
         node->value = key->getSeq();
@@ -174,7 +177,8 @@ public:
         ebr.read_unlock(tid);
     }
 
-    std::pair<bool, Node*> do_dequeue(T* key, const int tid, size_t listIndex = 0) {
+    std::pair<bool, Node*> do_dequeue(T* key, const int tid, size_t listIndex = 0)
+    {
         AbaPtr<Node> curr_head, next, curr_tail, new_head;
         AtomicNode<Node>* tail = &Q[listIndex].Tail;
         AtomicNode<Node>* head = &Q[listIndex].Head;
@@ -203,7 +207,8 @@ public:
         return {true, curr_head.ptr};
     }
 
-    bool remove(T* key, const int tid, size_t listIndex = 0) {
+    bool remove(T* key, const int tid, size_t listIndex = 0)
+    {
         ebr.read_lock(tid);
         auto result = do_dequeue(key, tid, listIndex);
         if(result.first){
@@ -214,7 +219,9 @@ public:
         return result.first;
     }
 
-    bool move(T* key, const int tid, size_t list_from = 0, size_t list_to = 0) {
+    // A copy-free move
+    bool move(T* key, const int tid, size_t list_from = 0, size_t list_to = 0)
+    {
         ebr.read_lock(tid);
         auto result = do_dequeue(key, tid, list_from);
         if (!result.first) {
@@ -226,7 +233,8 @@ public:
         return true;
     }
 
-    long long calculate_space(const int tid){
+    long long calculate_space(const int tid)
+    {
         size_t arraySize = payloadSize / sizeof(size_t);
         size_t nodeSize = sizeof(Node) + (arraySize * sizeof(size_t));
         return ebr.cal_space(nodeSize, tid);

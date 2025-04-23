@@ -1,6 +1,6 @@
 /******************************************************************************
  * Copyright (c) 2016-2017, Pedro Ramalhete, Andreia Correia
- * Copyright (c) 2024-2025, MD Amit Hasan Arovi, Ruslan Nikolaev
+ * Copyright (c) 2024-2025, Md Amit Hasan Arovi, Ruslan Nikolaev
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without

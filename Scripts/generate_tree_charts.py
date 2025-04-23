@@ -5,6 +5,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import cairosvg  # Library for SVG to PDF conversion
 
+#
+# This script processes tree data and generates charts
+#
 
 DATA_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "Data"))
 

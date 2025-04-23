@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # A full-blown test which runs around 26 hours
+# (you can comment out tests that you do not need)
 
 cd "$(dirname "$0")/.." || { echo "Failed to navigate to PLDI directory"; exit 1; }
 

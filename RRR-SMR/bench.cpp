@@ -4,7 +4,7 @@
  *  Created on: Apr 23, 2016
  *      Author: pramalhe
  *
- *  Modified and adopted for RRR-SMR by MD Amit Hasan Arovi
+ *  Modified and adopted for RRR-SMR by Md Amit Hasan Arovi
  */
 
 #include <thread>

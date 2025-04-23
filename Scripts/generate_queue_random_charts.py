@@ -5,6 +5,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 import cairosvg
 
+#
+# This script processes queue data and generates charts
+# (recycling percentage tests)
+#
+
 # Base directory setup
 DATA_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "Data"))
 QUEUE_RESULTS_DIR = os.path.join(DATA_DIR, "queue_output_results", "RecyclingPercentage")

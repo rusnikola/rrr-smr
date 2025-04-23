@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024-2025, MD Amit Hasan Arovi, Ruslan Nikolaev
+ * Copyright (c) 2024-2025, Md Amit Hasan Arovi, Ruslan Nikolaev
  * All Rights Reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -72,8 +72,10 @@ private:
 
     EBR<Node> ebr {maxThreads, false, false};
 
+    // Left and Right flag bits
     #define NT_TAG 1UL
     #define NT_FLG 2UL
+    // A special key that is used for sentinel nodes
     #define NT_KEY_NULL ((const T *) nullptr)
 
     static inline Node *unmarkPtr(Node *n) {
@@ -262,13 +264,14 @@ public:
         return ebr.cal_space(nodeSize, tid);
     }
 
+    // No copy-free move
     bool move(const T *key, const int tid, size_t list_from = 0, size_t list_to = 0)
     {
         bool ok = remove(key, tid, list_from);
         if (!ok) {
             return false;
         }
-         return insert(key, tid, list_to);
+        return insert(key, tid, list_to);
     }
 
     bool remove(const T *key, int tid, size_t treeIndex = 0)

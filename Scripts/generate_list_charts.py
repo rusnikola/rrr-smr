@@ -6,6 +6,11 @@ import matplotlib.pyplot as plt
 import cairosvg
 import shutil
 
+#
+# This script processes list data and generates charts
+# (main tests with 50- and 90- percent recycling)
+#
+
 # Paths
 DATA_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "Data"))
 LIST_RESULTS_DIR = os.path.join(DATA_DIR, "list_output_results")

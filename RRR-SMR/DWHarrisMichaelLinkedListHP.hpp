@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024-2025, MD Amit Hasan Arovi, Ruslan Nikolaev
+ * Copyright (c) 2024-2025, Md Amit Hasan Arovi, Ruslan Nikolaev
  * All Rights Reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -111,6 +111,8 @@ public:
         }
     }
 
+    // This is similar to do_add except that it also safely reinitializes
+    // a previously used node
     bool do_add_full(T* key, const int tid, size_t listIndex, Node* newNode)
     {
         AbaPtr<Node> curr, next, o, n;
@@ -139,7 +141,8 @@ public:
         }
     }
 
-    bool insert(T* key, const int tid, size_t listIndex = 0) {
+    bool insert(T* key, const int tid, size_t listIndex = 0)
+    {
         void* buffer = malloc(sizeof(Node) + payloadSize);
         Node* newNode = new(buffer) Node(key, payloadSize);
         if (!do_add(key, tid, listIndex, newNode)) {
@@ -151,17 +154,17 @@ public:
         return true;
     }
 
-    std::pair<bool, Node*> do_remove(T* key, const int tid, size_t listIndex) {
+    std::pair<bool, Node*> do_remove(T* key, const int tid, size_t listIndex)
+    {
         AbaPtr<Node> curr, next;
         AtomicNode<Node>* prev;
         hp.take_snapshot(tid);
         while (true) {
-
             if (!find(key, &prev, &curr, &next, tid, listIndex)) {
                 return {false, nullptr};
             }
 
-
+            // Success: logically delete the node
             AbaPtr<Node> tmp_old, tmp_new;
             tmp_old.ptr = next.ptr;
             tmp_old.tag = next.tag;
@@ -171,6 +174,7 @@ public:
                 continue;
             }
 
+            // One attempt to physically unlink the node
             AbaPtr<Node> old_tag;
             old_tag.ptr = curr.ptr;
             old_tag.tag = curr.tag;
@@ -179,6 +183,7 @@ public:
             new_tag.ptr = next.ptr;
             new_tag.tag = curr.tag + 1;
             if (!prev->full.compare_exchange_strong(old_tag, new_tag)) {
+                // Failed: need to prune the list
                 prune(curr.ptr, tid, listIndex);
             }
 
@@ -186,14 +191,17 @@ public:
         }
     }
 
-    bool remove(T* key, const int tid, size_t listIndex = 0) {
+    bool remove(T* key, const int tid, size_t listIndex = 0)
+    {
         auto result = do_remove(key, tid, listIndex);
         if (result.first) hp.retire(result.second, tid);
         hp.clear(tid);
         return result.first;
     }
 
-    bool move(T* key, const int tid, size_t list_from = 0, size_t list_to = 0) {
+    // A copy-free version
+    bool move(T* key, const int tid, size_t list_from = 0, size_t list_to = 0)
+    {
         auto result = do_remove(key, tid, list_from);
         if (!result.first) {
             hp.clear(tid);
@@ -217,7 +225,8 @@ public:
         return isContains;
     }
 
-    long long calculate_space(const int tid){
+    long long calculate_space(const int tid)
+    {
         size_t arraySize = payloadSize / sizeof(T*);
         size_t nodeSize = sizeof(Node) + (arraySize * sizeof(T*));
         return hp.cal_space(nodeSize, tid);
